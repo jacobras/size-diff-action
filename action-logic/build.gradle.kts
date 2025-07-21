@@ -13,7 +13,9 @@ kotlin {
 
     sourceSets {
         jsMain.dependencies {
+            implementation(kotlinWrappers.actions.cache)
             implementation(kotlinWrappers.node)
+            implementation(libs.kotlin.coroutines.core)
             implementation(libs.humanReadable)
         }
     }

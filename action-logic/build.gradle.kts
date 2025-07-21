@@ -5,8 +5,10 @@ plugins {
 kotlin {
     js {
         useCommonJs()
-        binaries.executable()
-        outputModuleName = "action"
+        nodejs {
+            binaries.executable()
+        }
+        outputModuleName = "actionLogic"
     }
 
     sourceSets {

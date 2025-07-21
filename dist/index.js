@@ -112427,11 +112427,10 @@ function requireGithub () {
 requireGithub();
 
 try {
-  // `who-to-greet` input defined in action metadata file
+  const kotlin = require("action-logic/dist/actionLogic.js");
   const file = coreExports.getInput("file");
-  coreExports.info(`Filename: ${file}!`);
-
-  coreExports.setOutput("summary", file);
+  const summary = kotlin.ActionLogic.buildSummary(file);
+  coreExports.setOutput("summary", summary);
 } catch (error) {
   coreExports.setFailed(error.message);
 }

@@ -2,11 +2,10 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 try {
-  // `who-to-greet` input defined in action metadata file
+  const kotlin = require("action-logic/dist/actionLogic.js")
   const file = core.getInput("file");
-  core.info(`Filename: ${file}!`);
-
-  core.setOutput("summary", file);
+  const summary = kotlin.ActionLogic.buildSummary(file)
+  core.setOutput("summary", summary);
 } catch (error) {
   core.setFailed(error.message);
 }

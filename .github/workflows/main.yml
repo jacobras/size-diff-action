@@ -1,0 +1,19 @@
+on: [ push ]
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    name: Run Test Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Launch test action
+        uses: ./
+        id: test
+        with:
+          file: test-file.apk
+
+      - name: Print Output
+        run: |
+          echo "Result: ${{ steps.test.outputs.summary }}"

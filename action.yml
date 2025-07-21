@@ -1,0 +1,16 @@
+name: "Size Diff"
+description: "Calculates the difference in a file's size, compared to a golden standard (like your main branch)."
+author: "Jacob Ras"
+
+inputs:
+  file:
+    description: "The file to monitor the size of."
+    required: true
+
+outputs:
+  summary:
+    description: "A readable summary of the file size difference"
+
+runs:
+  using: node20
+  main: dist/index.js

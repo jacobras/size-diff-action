@@ -1,0 +1,29 @@
+{
+  "name": "size-diff-action",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^5.1.1"
+  },
+  "description": "GitHub Action to calculate difference in a file's size, compared to the main branch",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobras/size-diff-action.git"
+  },
+  "author": "Jacob Ras",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobras/size-diff-action/issues"
+  },
+  "homepage": "https://github.com/jacobras/size-diff-action#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.45.1"
+  }
+}

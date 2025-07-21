@@ -112426,8 +112426,183 @@ function requireGithub () {
 
 requireGithub();
 
+var actionLogic = {exports: {}};
+
+var kotlinKotlinStdlib = {exports: {}};
+
+var hasRequiredKotlinKotlinStdlib;
+
+function requireKotlinKotlinStdlib () {
+	if (hasRequiredKotlinKotlinStdlib) return kotlinKotlinStdlib.exports;
+	hasRequiredKotlinKotlinStdlib = 1;
+	(function (module) {
+		(function (_) {
+		  //region block: pre-declaration
+		  initMetadataForObject(Unit, 'Unit');
+		  //endregion
+		  function implement(interfaces) {
+		    var maxSize = 1;
+		    var masks = [];
+		    var inductionVariable = 0;
+		    var last = interfaces.length;
+		    while (inductionVariable < last) {
+		      var i = interfaces[inductionVariable];
+		      inductionVariable = inductionVariable + 1 | 0;
+		      var currentSize = maxSize;
+		      var tmp0_elvis_lhs = i.prototype.$imask$;
+		      var imask = tmp0_elvis_lhs == null ? i.$imask$ : tmp0_elvis_lhs;
+		      if (!(imask == null)) {
+		        masks.push(imask);
+		        currentSize = imask.length;
+		      }
+		      var iid = i.$metadata$.iid;
+		      var tmp;
+		      if (iid == null) {
+		        tmp = null;
+		      } else {
+		        // Inline function 'kotlin.let' call
+		        tmp = bitMaskWith(iid);
+		      }
+		      var iidImask = tmp;
+		      if (!(iidImask == null)) {
+		        masks.push(iidImask);
+		        currentSize = Math.max(currentSize, iidImask.length);
+		      }
+		      if (currentSize > maxSize) {
+		        maxSize = currentSize;
+		      }
+		    }
+		    return compositeBitMask(maxSize, masks);
+		  }
+		  function bitMaskWith(activeBit) {
+		    var numberIndex = activeBit >> 5;
+		    var intArray = new Int32Array(numberIndex + 1 | 0);
+		    var positionInNumber = activeBit & 31;
+		    var numberWithSettledBit = 1 << positionInNumber;
+		    intArray[numberIndex] = intArray[numberIndex] | numberWithSettledBit;
+		    return intArray;
+		  }
+		  function compositeBitMask(capacity, masks) {
+		    var tmp = 0;
+		    var tmp_0 = new Int32Array(capacity);
+		    while (tmp < capacity) {
+		      var tmp_1 = tmp;
+		      var result = 0;
+		      var inductionVariable = 0;
+		      var last = masks.length;
+		      while (inductionVariable < last) {
+		        var mask = masks[inductionVariable];
+		        inductionVariable = inductionVariable + 1 | 0;
+		        if (tmp_1 < mask.length) {
+		          result = result | mask[tmp_1];
+		        }
+		      }
+		      tmp_0[tmp_1] = result;
+		      tmp = tmp + 1 | 0;
+		    }
+		    return tmp_0;
+		  }
+		  function defineProp(obj, name, getter, setter) {
+		    return Object.defineProperty(obj, name, {configurable: true, get: getter, set: setter});
+		  }
+		  function equals(obj1, obj2) {
+		    if (obj1 == null) {
+		      return obj2 == null;
+		    }
+		    {
+		      return false;
+		    }
+		  }
+		  function protoOf(constructor) {
+		    return constructor.prototype;
+		  }
+		  function createMetadata(kind, name, defaultConstructor, associatedObjectKey, associatedObjects, suspendArity) {
+		    var undef = VOID;
+		    var iid = VOID;
+		    return {kind: kind, simpleName: name, associatedObjectKey: associatedObjectKey, associatedObjects: associatedObjects, suspendArity: suspendArity, $kClass$: undef, defaultConstructor: defaultConstructor, iid: iid};
+		  }
+		  function initMetadataFor(kind, ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects) {
+		    if (!(parent == null)) {
+		      ctor.prototype = Object.create(parent.prototype);
+		      ctor.prototype.constructor = ctor;
+		    }
+		    var metadata = createMetadata(kind, name, defaultConstructor, associatedObjectKey, associatedObjects, suspendArity);
+		    ctor.$metadata$ = metadata;
+		    if (!(interfaces == null)) {
+		      var receiver = !equals(metadata.iid, VOID) ? ctor : ctor.prototype;
+		      receiver.$imask$ = implement(interfaces);
+		    }
+		  }
+		  function initMetadataForObject(ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects) {
+		    var kind = 'object';
+		    initMetadataFor(kind, ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects);
+		  }
+		  var VOID;
+		  function Unit() {
+		  }
+		  protoOf(Unit).toString = function () {
+		    return 'kotlin.Unit';
+		  };
+		  //endregion
+		  //region block: exports
+		  _.$_$ = _.$_$ || {};
+		  _.$_$.a = defineProp;
+		  _.$_$.b = initMetadataForObject;
+		  _.$_$.c = protoOf;
+		  //endregion
+		  return _;
+		}(module.exports));
+
+		
+	} (kotlinKotlinStdlib));
+	return kotlinKotlinStdlib.exports;
+}
+
+var hasRequiredActionLogic;
+
+function requireActionLogic () {
+	if (hasRequiredActionLogic) return actionLogic.exports;
+	hasRequiredActionLogic = 1;
+	(function (module) {
+		(function (_, kotlin_kotlin) {
+		  //region block: imports
+		  var protoOf = kotlin_kotlin.$_$.c;
+		  var initMetadataForObject = kotlin_kotlin.$_$.b;
+		  var defineProp = kotlin_kotlin.$_$.a;
+		  //endregion
+		  //region block: pre-declaration
+		  initMetadataForObject(ActionLogic, 'ActionLogic');
+		  //endregion
+		  function ActionLogic() {
+		  }
+		  protoOf(ActionLogic).buildSummary = function (file) {
+		    return 'Hello ' + file + '!';
+		  };
+		  var ActionLogic_instance;
+		  function ActionLogic_getInstance() {
+		    return ActionLogic_instance;
+		  }
+		  //region block: init
+		  ActionLogic_instance = new ActionLogic();
+		  //endregion
+		  //region block: exports
+		  function $jsExportAll$(_) {
+		    defineProp(_, 'ActionLogic', ActionLogic_getInstance);
+		  }
+		  $jsExportAll$(_);
+		  //endregion
+		  return _;
+		}(module.exports, requireKotlinKotlinStdlib()));
+
+		
+	} (actionLogic));
+	return actionLogic.exports;
+}
+
+var actionLogicExports = requireActionLogic();
+var kotlin = /*@__PURE__*/getDefaultExportFromCjs(actionLogicExports);
+
 try {
-  const kotlin = require("action-logic/dist/actionLogic.js");
   const file = coreExports.getInput("file");
   const summary = kotlin.ActionLogic.buildSummary(file);
   coreExports.setOutput("summary", summary);

@@ -28,6 +28,7 @@ import require$$0$8 from 'diagnostics_channel';
 import require$$2$3 from 'child_process';
 import require$$6$1 from 'timers';
 import require$$0$9 from 'punycode';
+import require$$0$a from 'node:fs';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -112436,9 +112437,23 @@ function requireKotlinKotlinStdlib () {
 	if (hasRequiredKotlinKotlinStdlib) return kotlinKotlinStdlib.exports;
 	hasRequiredKotlinKotlinStdlib = 1;
 	(function (module) {
+		//region block: polyfills
+		if (typeof ArrayBuffer.isView === 'undefined') {
+		  ArrayBuffer.isView = function (a) {
+		    return a != null && a.__proto__ != null && a.__proto__.__proto__ === Int8Array.prototype.__proto__;
+		  };
+		}
+		//endregion
 		(function (_) {
+		  //region block: imports
+		  var isView = ArrayBuffer.isView;
+		  //endregion
 		  //region block: pre-declaration
 		  initMetadataForObject(Unit, 'Unit');
+		  initMetadataForClass(Exception, 'Exception', Exception_init_$Create$, Error);
+		  initMetadataForClass(RuntimeException, 'RuntimeException', RuntimeException_init_$Create$, Exception);
+		  initMetadataForClass(IllegalStateException, 'IllegalStateException', IllegalStateException_init_$Create$, RuntimeException);
+		  initMetadataForClass(ClassCastException, 'ClassCastException', ClassCastException_init_$Create$, RuntimeException);
 		  //endregion
 		  function implement(interfaces) {
 		    var maxSize = 1;
@@ -112502,8 +112517,26 @@ function requireKotlinKotlinStdlib () {
 		    }
 		    return tmp_0;
 		  }
+		  function objectCreate(proto) {
+		    proto = proto === VOID ? null : proto;
+		    return Object.create(proto);
+		  }
 		  function defineProp(obj, name, getter, setter) {
 		    return Object.defineProperty(obj, name, {configurable: true, get: getter, set: setter});
+		  }
+		  function toString(o) {
+		    var tmp;
+		    if (o == null) {
+		      tmp = 'null';
+		    } else if (isArrayish(o)) {
+		      tmp = '[...]';
+		    } else if (!(typeof o.toString === 'function')) {
+		      tmp = anyToString(o);
+		    } else {
+		      // Inline function 'kotlin.js.unsafeCast' call
+		      tmp = o.toString();
+		    }
+		    return tmp;
 		  }
 		  function equals(obj1, obj2) {
 		    if (obj1 == null) {
@@ -112513,14 +112546,65 @@ function requireKotlinKotlinStdlib () {
 		      return false;
 		    }
 		  }
+		  function anyToString(o) {
+		    return Object.prototype.toString.call(o);
+		  }
+		  function captureStack(instance, constructorFunction) {
+		    if (Error.captureStackTrace != null) {
+		      Error.captureStackTrace(instance, constructorFunction);
+		    } else {
+		      // Inline function 'kotlin.js.asDynamic' call
+		      instance.stack = (new Error()).stack;
+		    }
+		  }
 		  function protoOf(constructor) {
 		    return constructor.prototype;
 		  }
+		  function defineMessage(message, cause) {
+		    var tmp;
+		    if (isUndefined(message)) {
+		      var tmp_0;
+		      if (isUndefined(cause)) {
+		        tmp_0 = message;
+		      } else {
+		        var tmp1_elvis_lhs = null ;
+		        tmp_0 = tmp1_elvis_lhs == null ? VOID : tmp1_elvis_lhs;
+		      }
+		      tmp = tmp_0;
+		    } else {
+		      tmp = message == null ? VOID : message;
+		    }
+		    return tmp;
+		  }
+		  function isUndefined(value) {
+		    return value === VOID;
+		  }
+		  function extendThrowable(this_, message, cause) {
+		    defineFieldOnInstance(this_, 'message', defineMessage(message, cause));
+		    defineFieldOnInstance(this_, 'cause', cause);
+		    defineFieldOnInstance(this_, 'name', Object.getPrototypeOf(this_).constructor.name);
+		  }
+		  function defineFieldOnInstance(this_, name, value) {
+		    Object.defineProperty(this_, name, {configurable: true, writable: true, value: value});
+		  }
+		  function THROW_CCE() {
+		    throw ClassCastException_init_$Create$();
+		  }
 		  function createMetadata(kind, name, defaultConstructor, associatedObjectKey, associatedObjects, suspendArity) {
 		    var undef = VOID;
-		    var iid = VOID;
+		    var iid = kind === 'interface' ? generateInterfaceId() : VOID;
 		    return {kind: kind, simpleName: name, associatedObjectKey: associatedObjectKey, associatedObjects: associatedObjects, suspendArity: suspendArity, $kClass$: undef, defaultConstructor: defaultConstructor, iid: iid};
 		  }
+		  function generateInterfaceId() {
+		    if (globalInterfaceId === VOID) {
+		      globalInterfaceId = 0;
+		    }
+		    // Inline function 'kotlin.js.unsafeCast' call
+		    globalInterfaceId = globalInterfaceId + 1 | 0;
+		    // Inline function 'kotlin.js.unsafeCast' call
+		    return globalInterfaceId;
+		  }
+		  var globalInterfaceId;
 		  function initMetadataFor(kind, ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects) {
 		    if (!(parent == null)) {
 		      ctor.prototype = Object.create(parent.prototype);
@@ -112533,9 +112617,20 @@ function requireKotlinKotlinStdlib () {
 		      receiver.$imask$ = implement(interfaces);
 		    }
 		  }
+		  function initMetadataForClass(ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects) {
+		    var kind = 'class';
+		    initMetadataFor(kind, ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects);
+		  }
 		  function initMetadataForObject(ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects) {
 		    var kind = 'object';
 		    initMetadataFor(kind, ctor, name, defaultConstructor, parent, interfaces, suspendArity, associatedObjectKey, associatedObjects);
+		  }
+		  function isArrayish(o) {
+		    return isJsArray(o) || isView(o);
+		  }
+		  function isJsArray(obj) {
+		    // Inline function 'kotlin.js.unsafeCast' call
+		    return Array.isArray(obj);
 		  }
 		  var VOID;
 		  function Unit() {
@@ -112543,12 +112638,88 @@ function requireKotlinKotlinStdlib () {
 		  protoOf(Unit).toString = function () {
 		    return 'kotlin.Unit';
 		  };
+		  function Exception_init_$Init$($this) {
+		    extendThrowable($this);
+		    Exception.call($this);
+		    return $this;
+		  }
+		  function Exception_init_$Create$() {
+		    var tmp = Exception_init_$Init$(objectCreate(protoOf(Exception)));
+		    captureStack(tmp, Exception_init_$Create$);
+		    return tmp;
+		  }
+		  function Exception_init_$Init$_0(message, $this) {
+		    extendThrowable($this, message);
+		    Exception.call($this);
+		    return $this;
+		  }
+		  function Exception() {
+		    captureStack(this, Exception);
+		  }
+		  function IllegalStateException_init_$Init$($this) {
+		    RuntimeException_init_$Init$($this);
+		    IllegalStateException.call($this);
+		    return $this;
+		  }
+		  function IllegalStateException_init_$Create$() {
+		    var tmp = IllegalStateException_init_$Init$(objectCreate(protoOf(IllegalStateException)));
+		    captureStack(tmp, IllegalStateException_init_$Create$);
+		    return tmp;
+		  }
+		  function IllegalStateException_init_$Init$_0(message, $this) {
+		    RuntimeException_init_$Init$_0(message, $this);
+		    IllegalStateException.call($this);
+		    return $this;
+		  }
+		  function IllegalStateException_init_$Create$_0(message) {
+		    var tmp = IllegalStateException_init_$Init$_0(message, objectCreate(protoOf(IllegalStateException)));
+		    captureStack(tmp, IllegalStateException_init_$Create$_0);
+		    return tmp;
+		  }
+		  function IllegalStateException() {
+		    captureStack(this, IllegalStateException);
+		  }
+		  function RuntimeException_init_$Init$($this) {
+		    Exception_init_$Init$($this);
+		    RuntimeException.call($this);
+		    return $this;
+		  }
+		  function RuntimeException_init_$Create$() {
+		    var tmp = RuntimeException_init_$Init$(objectCreate(protoOf(RuntimeException)));
+		    captureStack(tmp, RuntimeException_init_$Create$);
+		    return tmp;
+		  }
+		  function RuntimeException_init_$Init$_0(message, $this) {
+		    Exception_init_$Init$_0(message, $this);
+		    RuntimeException.call($this);
+		    return $this;
+		  }
+		  function RuntimeException() {
+		    captureStack(this, RuntimeException);
+		  }
+		  function ClassCastException_init_$Init$($this) {
+		    RuntimeException_init_$Init$($this);
+		    ClassCastException.call($this);
+		    return $this;
+		  }
+		  function ClassCastException_init_$Create$() {
+		    var tmp = ClassCastException_init_$Init$(objectCreate(protoOf(ClassCastException)));
+		    captureStack(tmp, ClassCastException_init_$Create$);
+		    return tmp;
+		  }
+		  function ClassCastException() {
+		    captureStack(this, ClassCastException);
+		  }
 		  //endregion
 		  //region block: exports
 		  _.$_$ = _.$_$ || {};
-		  _.$_$.a = defineProp;
-		  _.$_$.b = initMetadataForObject;
-		  _.$_$.c = protoOf;
+		  _.$_$.a = VOID;
+		  _.$_$.b = IllegalStateException_init_$Create$_0;
+		  _.$_$.c = defineProp;
+		  _.$_$.d = initMetadataForObject;
+		  _.$_$.e = protoOf;
+		  _.$_$.f = toString;
+		  _.$_$.g = THROW_CCE;
 		  //endregion
 		  return _;
 		}(module.exports));
@@ -112564,23 +112735,42 @@ function requireActionLogic () {
 	if (hasRequiredActionLogic) return actionLogic.exports;
 	hasRequiredActionLogic = 1;
 	(function (module) {
-		(function (_, kotlin_kotlin) {
+		(function (_, $module$node_fs_4svwsv, kotlin_kotlin) {
 		  //region block: imports
-		  var protoOf = kotlin_kotlin.$_$.c;
-		  var initMetadataForObject = kotlin_kotlin.$_$.b;
-		  var defineProp = kotlin_kotlin.$_$.a;
+		  var statSync = $module$node_fs_4svwsv.statSync;
+		  var toString = kotlin_kotlin.$_$.f;
+		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.b;
+		  var protoOf = kotlin_kotlin.$_$.e;
+		  var initMetadataForObject = kotlin_kotlin.$_$.d;
+		  var THROW_CCE = kotlin_kotlin.$_$.g;
+		  var defineProp = kotlin_kotlin.$_$.c;
 		  //endregion
 		  //region block: pre-declaration
 		  initMetadataForObject(ActionLogic, 'ActionLogic');
 		  //endregion
 		  function ActionLogic() {
 		  }
-		  protoOf(ActionLogic).buildSummary = function (file) {
-		    return 'Hello ' + file + '!';
+		  protoOf(ActionLogic).buildSummary = function (path) {
+		    var options = buildObject();
+		    var tmp0_elvis_lhs = statSync(path, options);
+		    var tmp;
+		    if (tmp0_elvis_lhs == null) {
+		      var message = 'Cannot find the file at path ' + path;
+		      throw IllegalStateException_init_$Create$(toString(message));
+		    } else {
+		      tmp = tmp0_elvis_lhs;
+		    }
+		    var file = tmp;
+		    var fileSize = file.size;
+		    return 'The file at ' + path + ' is: ' + fileSize + '}!';
 		  };
 		  var ActionLogic_instance;
 		  function ActionLogic_getInstance() {
 		    return ActionLogic_instance;
+		  }
+		  function buildObject() {
+		    var tmp = {};
+		    return (tmp == null ? true : !(tmp == null)) ? tmp : THROW_CCE();
 		  }
 		  //region block: init
 		  ActionLogic_instance = new ActionLogic();
@@ -112592,7 +112782,7 @@ function requireActionLogic () {
 		  $jsExportAll$(_);
 		  //endregion
 		  return _;
-		}(module.exports, requireKotlinKotlinStdlib()));
+		}(module.exports, require$$0$a, requireKotlinKotlinStdlib()));
 
 		
 	} (actionLogic));
@@ -112603,8 +112793,8 @@ var actionLogicExports = requireActionLogic();
 var kotlin = /*@__PURE__*/getDefaultExportFromCjs(actionLogicExports);
 
 try {
-  const file = coreExports.getInput("file");
-  const summary = kotlin.ActionLogic.buildSummary(file);
+  const path = coreExports.getInput("path");
+  const summary = kotlin.ActionLogic.buildSummary(path);
   coreExports.setOutput("summary", summary);
 } catch (error) {
   coreExports.setFailed(error.message);

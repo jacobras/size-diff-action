@@ -3,7 +3,7 @@ description: "Calculates the difference in a file's size, compared to a golden s
 author: "Jacob Ras"
 
 inputs:
-  file:
+  path:
     description: "The file to monitor the size of."
     required: true
 

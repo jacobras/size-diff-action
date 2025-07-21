@@ -12,7 +12,7 @@ jobs:
         uses: ./
         id: test
         with:
-          file: test-file.apk
+          path: test-file.zip
 
       - name: Print Output
         run: |

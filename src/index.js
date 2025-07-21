@@ -3,8 +3,8 @@ import * as github from "@actions/github";
 import kotlin from "../action-logic/build/compileSync/js/main/productionExecutable/kotlin/actionLogic.js"
 
 try {
-  const file = core.getInput("file");
-  const summary = kotlin.ActionLogic.buildSummary(file)
+  const path = core.getInput("path");
+  const summary = kotlin.ActionLogic.buildSummary(path)
   core.setOutput("summary", summary);
 } catch (error) {
   core.setFailed(error.message);

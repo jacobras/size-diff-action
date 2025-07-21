@@ -13,6 +13,8 @@ kotlin {
 
     sourceSets {
         jsMain.dependencies {
+            implementation(kotlinWrappers.node)
+            implementation(libs.humanReadable)
         }
     }
 }

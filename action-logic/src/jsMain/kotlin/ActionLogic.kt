@@ -1,5 +1,7 @@
 import actions.cache.restoreCache
 import actions.cache.saveCache
+import actions.core.getInput
+import actions.core.setOutput
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.promise
@@ -16,13 +18,20 @@ object ActionLogic {
 
     @OptIn(DelicateCoroutinesApi::class)
     @Suppress("unused")
-    fun buildSummary(path: String): Promise<String> = GlobalScope.promise {
-        restoreCache(
+    fun run(): Promise<Unit> = GlobalScope.promise {
+        val path = getInput("path")
+
+        val cacheResult = restoreCache(
             paths = arrayOf(CACHE_FILENAME),
             primaryKey = CACHE_KEY
         )
-        val existing = readFileSync(CACHE_FILENAME, BufferEncoding.utf8)
-        println(existing)
+        println(cacheResult)
+        val existing = try {
+            readFileSync(CACHE_FILENAME, BufferEncoding.utf8).toLong()
+        } catch (e: dynamic) {
+            println("Failed to read existing file: $e")
+            -1L
+        }
 
         val options = buildObject<StatSyncFnSimpleOptions>()
         val file = statSync.invoke(path, options) ?: error("Cannot find the file at path $path")
@@ -40,7 +49,7 @@ object ActionLogic {
             enableCrossOsArchive = true
         )
 
-        return@promise "The file at $path is: $fileSize bytes, was: $existing. Run ID: $runId"
+        setOutput("summary", "The file at $path is: $fileSize bytes, was: $existing. The run ID: $runId")
     }
 }
 

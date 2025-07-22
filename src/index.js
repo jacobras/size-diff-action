@@ -4,9 +4,7 @@ import kotlin from "../action-logic/build/compileSync/js/main/productionExecutab
 
 async function run() {
     try {
-        const path = core.getInput("path");
-        const summary = await kotlin.ActionLogic.buildSummary(path)
-        core.setOutput("summary", summary);
+        await kotlin.ActionLogic.run()
     } catch (error) {
         core.setFailed(error.message);
     }

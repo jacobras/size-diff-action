@@ -6,10 +6,12 @@ GitHub Action to calculate difference in a file's size, compared to the main bra
 
 TODO...
 
-### Publishing
+## Contributing
 
-I couldn't get the entire project working in Kotlin, so it's a mix. The logic is in Kotlin,
-but the main Action entrypoint is in JS.
+### Publishing the Action
+
+The project is mostly Kotlin, with just the main entrypoint written in JS.
 
 1. Build JS from Kotlin module using `gradlew kotlinUpgradeYarnLock :action-logic:jsNodeProductionRun`
 2. Build full JS dist using `rollup --config rollup.config.js`
+3. Push /dist.

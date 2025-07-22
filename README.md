@@ -9,7 +9,7 @@ app's debug APK size on pull requests:
 
 Add `jacobras/size-diff-action@v1` with these parameters:
 
-* `path` the file to track the size of
+* `path` the file to track the size of (can be a glob pattern)
 * `diffSize` a boolean indicating whether this is the main branch
 
 The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:

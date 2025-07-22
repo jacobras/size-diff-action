@@ -2,6 +2,7 @@ import actions.cache.restoreCache
 import actions.cache.saveCache
 import actions.core.getInput
 import actions.core.setOutput
+import js.promise.await
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.promise
@@ -19,7 +20,9 @@ object ActionLogic {
     @OptIn(DelicateCoroutinesApi::class)
     @Suppress("unused")
     fun run(): Promise<Unit> = GlobalScope.promise {
-        val path = getInput("path")
+        val pathInput = getInput("path")
+        val globber = actions.glob.create(pathInput)
+        val path = globber.glob().await().first()
         val mainBranchName = getInput("mainBranchName")
         val currentBranch = js("process.env.GITHUB_REF ") as String
         val isMainBranch = currentBranch == "refs/heads/$mainBranchName"
@@ -35,7 +38,7 @@ object ActionLogic {
             )
         } else {
             cacheNewFileSize(newSizeBytes)
-            "Size stored. Diff will happen when diffSize is set to true"
+            "Size stored ($newSizeBytes bytes). Diff will happen when this is run on a non-main branch."
         }
         setOutput("summary", summary)
     }

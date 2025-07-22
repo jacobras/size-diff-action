@@ -12,7 +12,7 @@ jobs:
         uses: ./
         id: test
         with:
-          path: test-file.zip
+          path: test-*.zip
 
       - name: Print Output
         run: |

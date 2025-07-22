@@ -18,7 +18,7 @@
     "@protobuf-ts/plugin" "^2.9.4"
     semver "^6.3.1"
 
-"@actions/core@^1.11.1", "@actions/core@^1.2.6":
+"@actions/core@^1.11.1", "@actions/core@^1.2.6", "@actions/core@^1.9.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.11.1.tgz#ae683aac5112438021588030efb53b1adb86f172"
   integrity sha512-hXJCSrkwfA46Vd9Z3q4cpEpHB1rL5NG04+/rbqW9d3+CSvtB1tYe8UTpAlixa1vj0m/ULglfEK2UKxMGxCxv5A==
@@ -39,6 +39,14 @@
   integrity sha512-SclLR7Ia5sEqjkJTPs7Sd86maMDw43p769YxBOxvPvEWuPEhpAnBsQfENOpXjFYMmhCqd127bmf+YdvJqVqR4A==
   dependencies:
     "@actions/core" "^1.2.6"
+    minimatch "^3.0.4"
+
+"@actions/glob@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@actions/glob/-/glob-0.5.0.tgz#72853048c6f84c05d8d9e0aad2bb926f6e3bc873"
+  integrity sha512-tST2rjPvJLRZLuT9NMUtyBjvj9Yo0MiJS3ow004slMvm8GFM+Zv9HvMJ7HWzfUyJnGrJvDsYkWBaaG3YKXRtCw==
+  dependencies:
+    "@actions/core" "^1.9.1"
     minimatch "^3.0.4"
 
 "@actions/http-client@^2.0.1", "@actions/http-client@^2.1.1", "@actions/http-client@^2.2.3":
@@ -212,11 +220,6 @@
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
   integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
-
-"@js-joda/core@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@js-joda/core/-/core-3.2.0.tgz#3e61e21b7b2b8a6be746df1335cf91d70db2a273"
-  integrity sha512-PMqgJ0sw5B7FKb2d5bWYIoxjri+QlW/Pys7+Rw82jSH0QN3rB05jZ/VrrsUdh1w4+i2kw9JOejXGq/KhDOX7Kg==
 
 "@protobuf-ts/plugin@^2.9.4":
   version "2.11.1"

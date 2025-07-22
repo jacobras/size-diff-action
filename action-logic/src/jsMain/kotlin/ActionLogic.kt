@@ -20,12 +20,13 @@ object ActionLogic {
     @Suppress("unused")
     fun run(): Promise<Unit> = GlobalScope.promise {
         val path = getInput("path")
-        val diffSize = getInput("diffSize").toBoolean()
-        println("diffSize input: $diffSize")
+        val mainBranchName = getInput("mainBranchName")
+        val currentBranch = js("process.env.GITHUB_REF ") as String
+        val isMainBranch = currentBranch == "refs/heads/$mainBranchName"
 
         val newSizeBytes = measureNewSizeFromFile(path)
 
-        val summary = if (diffSize) {
+        val summary = if (!isMainBranch) {
             val existingSizeBytes = readExistingSizeFromCache()
             SummaryBuilder.buildDiff(
                 path = path,
@@ -40,15 +41,13 @@ object ActionLogic {
     }
 
     private suspend fun readExistingSizeFromCache(): Long {
-        val cacheResult = restoreCache(
+        restoreCache(
             paths = arrayOf(CACHE_FILENAME),
             primaryKey = CACHE_KEY
         )
-        println(cacheResult)
         val existing = try {
             readFileSync(CACHE_FILENAME, BufferEncoding.utf8).toLong()
-        } catch (e: dynamic) {
-            println("Failed to read existing file: $e")
+        } catch (_: dynamic) {
             -1L
         }
         return existing
@@ -66,6 +65,7 @@ object ActionLogic {
 
         val runId = js("process.env.GITHUB_RUN_ID") as? String
         println("GitHub Actions run ID: $runId")
+        println("New file size: $fileSize bytes")
 
         saveCache(
             paths = arrayOf(CACHE_FILENAME),

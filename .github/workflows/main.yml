@@ -13,7 +13,6 @@ jobs:
         id: test
         with:
           path: test-file.zip
-          diffSize: true
 
       - name: Print Output
         run: |

@@ -6,6 +6,9 @@ inputs:
   path:
     description: "The path of the file to monitor the size of."
     required: true
+  diffSize:
+    description: "Whether to diff the size or just store it (i.e. whether this is running on the main branch)."
+    required: true
 
 outputs:
   summary:

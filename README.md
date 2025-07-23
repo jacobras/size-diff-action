@@ -10,7 +10,7 @@ app's debug APK size on pull requests:
 Add `jacobras/size-diff-action@v1` with these parameters:
 
 * `path` the file to track the size of (can be a glob pattern)
-* `diffSize` a boolean indicating whether this is the main branch
+* `mainBranchName` the name of your main branch (optional, defaults to "main")
 
 The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:
 
@@ -72,9 +72,9 @@ _Specify the `mainBranchName` parameter if your main branch is not called "main.
 
 #### Why does the comment show "Previous size: -1 byte"?
 
-That happens when the action hasn't been run on the main/develop branch yet. Make sure to check the `diffSize`
-parameter, so it checks the right name for your main branch. It could also mean the cache was deleted, which happens
-by GitHub when an entry hasn't been touched for 7 days.
+That happens when the action hasn't been run on the main/develop branch yet. Make sure to check the `mainBranchName`
+parameter. It could also mean the cache was deleted, which happens by GitHub when an entry hasn't been touched for 7
+days.
 
 #### Does this commit the file size on every change?
 

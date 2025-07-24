@@ -2,9 +2,12 @@ import actions.cache.restoreCache
 import actions.cache.saveCache
 import actions.core.getInput
 import actions.core.setOutput
+import actions.github.getOctokit
+import js.objects.unsafeJso
 import js.promise.await
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.await
 import kotlinx.coroutines.promise
 import node.buffer.BufferEncoding
 import node.fs.StatSyncFnSimpleOptions
@@ -25,20 +28,22 @@ object ActionLogic {
         val currentBranch = getCurrentBranchName()
         val isMainBranch = currentBranch == mainBranchRef
 
-        val newSizeBytes = measureNewSizeFromFile(path)
+        val newSizeBytes = getFileSizeBytes(path)
 
-        val summary = if (!isMainBranch) {
-            val existingSizeBytes = readExistingSizeFromCache()
-            SummaryBuilder.buildDiff(
-                path = path,
-                existingSizeBytes = existingSizeBytes,
-                newSizeBytes = newSizeBytes
-            )
-        } else {
+        if (isMainBranch) {
             cacheNewFileSize(newSizeBytes)
             "Size stored ($newSizeBytes bytes). Diff will happen when this is run on a non-main branch."
+        } else {
+            val existingSizeBytes = readExistingSizeFromCache()
+            val largeFiles = findLargeFiles()
+            val summary = SummaryBuilder.buildDiff(
+                path = path,
+                existingSizeBytes = existingSizeBytes,
+                newSizeBytes = newSizeBytes,
+                largeFiles = largeFiles
+            )
+            setOutput("summary", summary)
         }
-        setOutput("summary", summary)
     }
 
     private suspend fun getPath(): String {
@@ -69,13 +74,6 @@ object ActionLogic {
         return existing
     }
 
-    private fun measureNewSizeFromFile(path: String): Long {
-        val options = buildObject<StatSyncFnSimpleOptions>()
-        val file = statSync.invoke(path, options) ?: error("Cannot find the file at path $path")
-        val fileSize = file.size
-        return fileSize.toLong()
-    }
-
     private suspend fun cacheNewFileSize(fileSize: Long) {
         writeFileSync(CACHE_FILENAME, fileSize.toString())
 
@@ -89,6 +87,62 @@ object ActionLogic {
             options = buildObject(),
             enableCrossOsArchive = true
         )
+    }
+
+    private fun getFileSizeBytes(path: String): Long {
+        val options = buildObject<StatSyncFnSimpleOptions>()
+        val file = statSync.invoke(path, options) ?: error("Cannot find the file at path $path")
+        val fileSize = file.size
+        return fileSize.toLong()
+    }
+
+    /**
+     * Finds large files touched (added/modified) in the current PR.
+     */
+    private suspend fun findLargeFiles(): List<FileInfo> {
+        val token = getInput("repo-token").ifEmpty {
+            println("No repo-token passed in, not going to find large files")
+            return emptyList()
+        }
+
+        val prNumber = actions.github.context.payload.pull_request?.number ?: return let {
+            println("Not running in PR context, not going to find large files")
+            emptyList()
+        }
+        val owner = actions.github.context.repo.owner
+        val repo = actions.github.context.repo.repo
+
+        return try {
+            val octokit = getOctokitWrapper(token)
+            val response = octokit.rest.pulls.listFiles(unsafeJso {
+                this.owner = owner
+                this.repo = repo
+                this.prNumber = prNumber
+            }
+            ).await()
+
+            val files = response.data.filter { it.status in listOf("added", "modified") }
+            files.mapNotNull {
+                val fileSize = getFileSizeBytes(it.filename)
+
+                if (fileSize > 100 * 1024) { // TODO
+                    FileInfo(
+                        filename = it.filename,
+                        sizeBytes = fileSize
+                    )
+                } else {
+                    null
+                }
+            }
+        } catch (e: dynamic) {
+            println("error: $e")
+            emptyList()
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+    private fun getOctokitWrapper(token: String): OctokitWrapper {
+        return getOctokit(token) as OctokitWrapper
     }
 }
 

@@ -17,8 +17,8 @@ jobs:
         id: test
         with:
           path: test-*.zip
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           main-branch-name: main
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print Output
         run: |

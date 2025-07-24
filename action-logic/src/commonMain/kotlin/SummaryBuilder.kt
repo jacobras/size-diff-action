@@ -2,7 +2,12 @@ import kotlin.math.absoluteValue
 
 object SummaryBuilder {
 
-    fun buildDiff(path: String, existingSizeBytes: Long, newSizeBytes: Long): String {
+    fun buildDiff(
+        path: String,
+        existingSizeBytes: Long,
+        newSizeBytes: Long,
+        largeFiles: List<FileInfo>
+    ): String {
         return buildString {
             val extension = path.substringAfterLast(".")
             val formattedExistingSize = formatSize(existingSizeBytes)
@@ -25,6 +30,15 @@ object SummaryBuilder {
 
                 diffBytes < 0 -> {
                     appendLine("🔽 File size **decreases by $formattedDiff**")
+                }
+            }
+
+            if (largeFiles.isNotEmpty()) {
+                appendLine()
+                appendLine("Large files added/modified in this PR:")
+
+                for (file in largeFiles) {
+                    appendLine("* `${file.filename}`: ${formatSize(file.sizeBytes)}")
                 }
             }
 

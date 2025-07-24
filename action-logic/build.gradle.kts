@@ -17,6 +17,7 @@ kotlin {
             implementation(kotlinWrappers.actions.cache)
             implementation(kotlinWrappers.actions.core)
             implementation(kotlinWrappers.actions.glob)
+            implementation(kotlinWrappers.actions.github)
             implementation(kotlinWrappers.node)
             implementation(libs.kotlin.coroutines.core)
         }

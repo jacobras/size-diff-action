@@ -13,6 +13,9 @@ inputs:
     description: "The name of your main branch."
     default: "main"
     required: false
+  repo-token:
+    description: "Pass in ${{ secrets.GITHUB_TOKEN }} to print all large files added/modified in a PR."
+    required: false
 
 outputs:
   summary:

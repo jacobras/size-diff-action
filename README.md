@@ -7,17 +7,21 @@ app's debug APK size on pull requests:
 
 ## Usage
 
-Add `jacobras/size-diff-action@v1` with these parameters:
+Add `jacobras/size-diff-action@v2` with these parameters:
 
-* `path` the file to track the size of (can be a glob pattern)
-* `main-branch-name` the name of your main branch (optional, defaults to "main")
+| Parameter              | Required?    | Default  | Description                                                                        |
+|------------------------|--------------|----------|------------------------------------------------------------------------------------|
+| `path`                 | **required** |          | File to track the size of (can be a glob pattern).                                 |
+| `main-branch-name`     | _optional_   | `"main"` | Name of your main branch.                                                          |
+| `repo-token`           | _optional_   |          | Pass in `${{ secrets.GITHUB_TOKEN }}` to print large files added/modified in a PR. |
+| `large-file-threshold` | _optional_   | `"100"`  | Threshold (in kilobytes) on what to consider (and list) a "large file".            |
 
 The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:
 
 ```yml
 - name: Calculate APK size difference
   id: size-diff
-  uses: jacobras/size-diff-action@v1
+  uses: jacobras/size-diff-action@v2
   with:
     path: app/build/outputs/apk/debug/app-debug.apk # or any other file, as long as it exists
 
@@ -43,7 +47,7 @@ _Specify the `main-branch-name` parameter if your main branch is not called "mai
 
 - name: Calculate JS size difference
   id: size-diff
-  uses: jacobras/size-diff-action@v1
+  uses: jacobras/size-diff-action@v2
   with:
     path: build/js/packages/composeApp/kotlin/Human-Readable.js
     main-branch-name: main # only needed if not "main"

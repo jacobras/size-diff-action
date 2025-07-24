@@ -104,13 +104,14 @@ object ActionLogic {
             println("No repo-token passed in, not going to find large files")
             return emptyList()
         }
-
         val prNumber = actions.github.context.payload.pull_request?.number ?: return let {
             println("Not running in PR context, not going to find large files")
             emptyList()
         }
         val owner = actions.github.context.repo.owner
         val repo = actions.github.context.repo.repo
+
+        val largeFileThresholdKb = getInput("large-file-threshold-kb").ifEmpty { "100" }.toLong()
 
         return try {
             val octokit = getOctokitWrapper(token)
@@ -125,7 +126,7 @@ object ActionLogic {
             files.mapNotNull {
                 val fileSize = getFileSizeBytes(it.filename)
 
-                if (fileSize > 100 * 1024) { // TODO
+                if (fileSize > largeFileThresholdKb * ONE_MB_IN_KB) {
                     FileInfo(
                         filename = it.filename,
                         sizeBytes = fileSize
@@ -153,3 +154,4 @@ private fun <T> buildObject(builder: T.() -> Unit = {}): T {
 private const val PREFIX = "jacobras-size-diff-action"
 private const val CACHE_FILENAME = "$PREFIX-size.txt"
 private const val CACHE_KEY = "$PREFIX-main-file-size"
+private const val ONE_MB_IN_KB = 1024

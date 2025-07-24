@@ -159853,10 +159853,10 @@ function requireKotlinKotlinStdlib () {
 		  initMetadataForClass(AbstractCollection, 'AbstractCollection', VOID, VOID, [Collection]);
 		  initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, Collection]);
 		  initMetadataForClass(IteratorImpl, 'IteratorImpl');
-		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtList]);
+		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtList, Collection]);
 		  initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtSet, Collection]);
 		  initMetadataForCompanion(Companion_1);
-		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, Collection, KtList]);
+		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, KtList, Collection]);
 		  initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, KtSet, Collection]);
 		  initMetadataForCompanion(Companion_2);
 		  initMetadataForClass(Itr, 'Itr');
@@ -164524,23 +164524,24 @@ function requireKotlinKotlinStdlib () {
 		  _.$_$.q2 = newThrowable;
 		  _.$_$.r2 = numberToLong;
 		  _.$_$.s2 = protoOf;
-		  _.$_$.t2 = toString_1;
-		  _.$_$.u2 = abs;
-		  _.$_$.v2 = substringAfterLast;
-		  _.$_$.w2 = toLong_0;
-		  _.$_$.x2 = Enum;
-		  _.$_$.y2 = Error_0;
-		  _.$_$.z2 = Exception;
-		  _.$_$.a3 = Long;
-		  _.$_$.b3 = RuntimeException;
-		  _.$_$.c3 = THROW_CCE;
-		  _.$_$.d3 = UnsupportedOperationException;
-		  _.$_$.e3 = addSuppressed;
-		  _.$_$.f3 = createFailure;
-		  _.$_$.g3 = ensureNotNull;
-		  _.$_$.h3 = noWhenBranchMatchedException;
-		  _.$_$.i3 = throwUninitializedPropertyAccessException;
-		  _.$_$.j3 = toString_0;
+		  _.$_$.t2 = toLong;
+		  _.$_$.u2 = toString_1;
+		  _.$_$.v2 = abs;
+		  _.$_$.w2 = substringAfterLast;
+		  _.$_$.x2 = toLong_0;
+		  _.$_$.y2 = Enum;
+		  _.$_$.z2 = Error_0;
+		  _.$_$.a3 = Exception;
+		  _.$_$.b3 = Long;
+		  _.$_$.c3 = RuntimeException;
+		  _.$_$.d3 = THROW_CCE;
+		  _.$_$.e3 = UnsupportedOperationException;
+		  _.$_$.f3 = addSuppressed;
+		  _.$_$.g3 = createFailure;
+		  _.$_$.h3 = ensureNotNull;
+		  _.$_$.i3 = noWhenBranchMatchedException;
+		  _.$_$.j3 = throwUninitializedPropertyAccessException;
+		  _.$_$.k3 = toString_0;
 		  //endregion
 		  return _;
 		}(module.exports));
@@ -164566,7 +164567,7 @@ function requireKotlinxAtomicfu () {
 		  var initMetadataForObject = kotlin_kotlin.$_$.o2;
 		  var VOID = kotlin_kotlin.$_$.b;
 		  var initMetadataForClass = kotlin_kotlin.$_$.k2;
-		  var toString = kotlin_kotlin.$_$.j3;
+		  var toString = kotlin_kotlin.$_$.k3;
 		  //endregion
 		  //region block: pre-declaration
 		  initMetadataForClass(atomicfu$TraceBase, 'TraceBase');
@@ -164737,7 +164738,7 @@ function requireKotlinxCoroutinesCore () {
 		  var imul = Math.imul;
 		  var Unit_instance = kotlin_kotlin.$_$.c1;
 		  var protoOf = kotlin_kotlin.$_$.s2;
-		  var THROW_CCE = kotlin_kotlin.$_$.c3;
+		  var THROW_CCE = kotlin_kotlin.$_$.d3;
 		  var Element = kotlin_kotlin.$_$.y1;
 		  var Continuation = kotlin_kotlin.$_$.u1;
 		  var initMetadataForClass = kotlin_kotlin.$_$.k2;
@@ -164745,9 +164746,9 @@ function requireKotlinxCoroutinesCore () {
 		  var EmptyCoroutineContext_getInstance = kotlin_kotlin.$_$.a1;
 		  var createCoroutineUnintercepted = kotlin_kotlin.$_$.m1;
 		  var isInterface = kotlin_kotlin.$_$.p2;
-		  var toString = kotlin_kotlin.$_$.t2;
+		  var toString = kotlin_kotlin.$_$.u2;
 		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.p;
-		  var toString_0 = kotlin_kotlin.$_$.j3;
+		  var toString_0 = kotlin_kotlin.$_$.k3;
 		  var atomic$int$1 = kotlin_org_jetbrains_kotlinx_atomicfu.$_$.c;
 		  var atomic$ref$1 = kotlin_org_jetbrains_kotlinx_atomicfu.$_$.b;
 		  var get_COROUTINE_SUSPENDED = kotlin_kotlin.$_$.l1;
@@ -164766,19 +164767,19 @@ function requireKotlinxCoroutinesCore () {
 		  var minusKey = kotlin_kotlin.$_$.s1;
 		  var ContinuationInterceptor = kotlin_kotlin.$_$.t1;
 		  var RuntimeException_init_$Create$ = kotlin_kotlin.$_$.t;
-		  var addSuppressed = kotlin_kotlin.$_$.e3;
-		  var Enum = kotlin_kotlin.$_$.x2;
+		  var addSuppressed = kotlin_kotlin.$_$.f3;
+		  var Enum = kotlin_kotlin.$_$.y2;
 		  var startCoroutine = kotlin_kotlin.$_$.b2;
-		  var noWhenBranchMatchedException = kotlin_kotlin.$_$.h3;
-		  var Long = kotlin_kotlin.$_$.a3;
+		  var noWhenBranchMatchedException = kotlin_kotlin.$_$.i3;
+		  var Long = kotlin_kotlin.$_$.b3;
 		  var ArrayDeque_init_$Create$ = kotlin_kotlin.$_$.c;
-		  var RuntimeException = kotlin_kotlin.$_$.b3;
+		  var RuntimeException = kotlin_kotlin.$_$.c3;
 		  var RuntimeException_init_$Init$ = kotlin_kotlin.$_$.s;
 		  var captureStack = kotlin_kotlin.$_$.e2;
-		  var Error_0 = kotlin_kotlin.$_$.y2;
+		  var Error_0 = kotlin_kotlin.$_$.z2;
 		  var Error_init_$Init$ = kotlin_kotlin.$_$.l;
 		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.k;
-		  var throwUninitializedPropertyAccessException = kotlin_kotlin.$_$.i3;
+		  var throwUninitializedPropertyAccessException = kotlin_kotlin.$_$.j3;
 		  var ArrayList_init_$Create$ = kotlin_kotlin.$_$.d;
 		  var CancellationException = kotlin_kotlin.$_$.k1;
 		  var ArrayList = kotlin_kotlin.$_$.d1;
@@ -164788,12 +164789,12 @@ function requireKotlinxCoroutinesCore () {
 		  var fold = kotlin_kotlin.$_$.v1;
 		  var minusKey_0 = kotlin_kotlin.$_$.x1;
 		  var anyToString = kotlin_kotlin.$_$.d2;
-		  var UnsupportedOperationException = kotlin_kotlin.$_$.d3;
+		  var UnsupportedOperationException = kotlin_kotlin.$_$.e3;
 		  var UnsupportedOperationException_init_$Create$ = kotlin_kotlin.$_$.u;
-		  var Exception = kotlin_kotlin.$_$.z2;
+		  var Exception = kotlin_kotlin.$_$.a3;
 		  var IllegalArgumentException_init_$Create$ = kotlin_kotlin.$_$.o;
 		  kotlin_kotlin.$_$.b1;
-		  var createFailure = kotlin_kotlin.$_$.f3;
+		  var createFailure = kotlin_kotlin.$_$.g3;
 		  var _Result___init__impl__xyqfz8 = kotlin_kotlin.$_$.w;
 		  var Exception_init_$Init$ = kotlin_kotlin.$_$.n;
 		  var defineProp = kotlin_kotlin.$_$.g2;
@@ -164802,10 +164803,10 @@ function requireKotlinxCoroutinesCore () {
 		  var getKClassFromExpression = kotlin_kotlin.$_$.a;
 		  var Exception_init_$Create$ = kotlin_kotlin.$_$.m;
 		  var removeFirstOrNull = kotlin_kotlin.$_$.j1;
-		  var Collection = kotlin_kotlin.$_$.e1;
 		  var KtList = kotlin_kotlin.$_$.f1;
+		  var Collection = kotlin_kotlin.$_$.e1;
 		  var CancellationException_init_$Init$ = kotlin_kotlin.$_$.i;
-		  var ensureNotNull = kotlin_kotlin.$_$.g3;
+		  var ensureNotNull = kotlin_kotlin.$_$.h3;
 		  var getStringHashCode = kotlin_kotlin.$_$.i2;
 		  var HashSet_init_$Create$ = kotlin_kotlin.$_$.f;
 		  var RuntimeException_init_$Init$_0 = kotlin_kotlin.$_$.r;
@@ -164866,7 +164867,7 @@ function requireKotlinxCoroutinesCore () {
 		  initMetadataForClass(Symbol, 'Symbol');
 		  initMetadataForClass(SetTimeoutBasedDispatcher, 'SetTimeoutBasedDispatcher', VOID, CoroutineDispatcher, VOID, [1]);
 		  initMetadataForObject(NodeDispatcher, 'NodeDispatcher', VOID, SetTimeoutBasedDispatcher, VOID, [1]);
-		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [Collection, KtList]);
+		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [KtList, Collection]);
 		  initMetadataForClass(ScheduledMessageQueue, 'ScheduledMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(WindowMessageQueue, 'WindowMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(UnconfinedEventLoop, 'UnconfinedEventLoop', UnconfinedEventLoop, EventLoop);
@@ -168201,7 +168202,7 @@ function requireKotlinJsCore () {
 	(function (module) {
 		(function (_, kotlin_kotlin) {
 		  //region block: imports
-		  var toString = kotlin_kotlin.$_$.j3;
+		  var toString = kotlin_kotlin.$_$.k3;
 		  var newThrowable = kotlin_kotlin.$_$.q2;
 		  //endregion
 		  //region block: pre-declaration
@@ -168240,7 +168241,7 @@ function requireKotlinJs () {
 		  kotlin_kotlin.$_$.b1;
 		  var _Result___init__impl__xyqfz8 = kotlin_kotlin.$_$.w;
 		  var toJsError = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js_core.$_$.a;
-		  var createFailure = kotlin_kotlin.$_$.f3;
+		  var createFailure = kotlin_kotlin.$_$.g3;
 		  function toFixed(_this__u8e3s4, digits) {
 		    return (new Number(_this__u8e3s4)).toFixed(digits);
 		  }
@@ -168311,16 +168312,16 @@ function requireActionLogic () {
 		  var context = $module$_actions_github_mu8xwf.context;
 		  var protoOf = kotlin_kotlin.$_$.s2;
 		  var getStringHashCode = kotlin_kotlin.$_$.i2;
-		  var THROW_CCE = kotlin_kotlin.$_$.c3;
+		  var THROW_CCE = kotlin_kotlin.$_$.d3;
 		  var initMetadataForClass = kotlin_kotlin.$_$.k2;
-		  var Long = kotlin_kotlin.$_$.a3;
+		  var Long = kotlin_kotlin.$_$.b3;
 		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.k;
-		  var substringAfterLast = kotlin_kotlin.$_$.v2;
-		  var abs = kotlin_kotlin.$_$.u2;
+		  var substringAfterLast = kotlin_kotlin.$_$.w2;
+		  var abs = kotlin_kotlin.$_$.v2;
 		  var _Char___init__impl__6a9atx = kotlin_kotlin.$_$.v;
 		  var Unit_instance = kotlin_kotlin.$_$.c1;
 		  var initMetadataForObject = kotlin_kotlin.$_$.o2;
-		  var toString = kotlin_kotlin.$_$.t2;
+		  var toString = kotlin_kotlin.$_$.u2;
 		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.p;
 		  var numberToLong = kotlin_kotlin.$_$.r2;
 		  var CoroutineImpl = kotlin_kotlin.$_$.a2;
@@ -168332,13 +168333,14 @@ function requireActionLogic () {
 		  var awaitPromiseLike = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js.$_$.a;
 		  var first = kotlin_kotlin.$_$.h1;
 		  var initMetadataForCoroutine = kotlin_kotlin.$_$.l2;
-		  var toLong = kotlin_kotlin.$_$.w2;
+		  var toLong = kotlin_kotlin.$_$.x2;
 		  var println = kotlin_kotlin.$_$.c2;
 		  var emptyList = kotlin_kotlin.$_$.g1;
 		  var charSequenceLength = kotlin_kotlin.$_$.f2;
 		  var await_0 = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.a;
 		  var ArrayList_init_$Create$ = kotlin_kotlin.$_$.e;
 		  var listOf = kotlin_kotlin.$_$.i1;
+		  var toLong_0 = kotlin_kotlin.$_$.t2;
 		  var GlobalScope_instance = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.b;
 		  var promise = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.d;
 		  var defineProp = kotlin_kotlin.$_$.g2;
@@ -168497,14 +168499,14 @@ function requireActionLogic () {
 		  function ActionLogic$run$slambda(resultContinuation) {
 		    CoroutineImpl.call(this, resultContinuation);
 		  }
-		  protoOf(ActionLogic$run$slambda).ul = function ($this$promise, $completion) {
-		    var tmp = this.vl($this$promise, $completion);
+		  protoOf(ActionLogic$run$slambda).vl = function ($this$promise, $completion) {
+		    var tmp = this.wl($this$promise, $completion);
 		    tmp.m4_1 = Unit_instance;
 		    tmp.n4_1 = null;
 		    return tmp.s4();
 		  };
 		  protoOf(ActionLogic$run$slambda).g5 = function (p1, $completion) {
-		    return this.ul((!(p1 == null) ? isInterface(p1, CoroutineScope) : false) ? p1 : THROW_CCE(), $completion);
+		    return this.vl((!(p1 == null) ? isInterface(p1, CoroutineScope) : false) ? p1 : THROW_CCE(), $completion);
 		  };
 		  protoOf(ActionLogic$run$slambda).s4 = function () {
 		    var suspendResult = this.m4_1;
@@ -168522,14 +168524,14 @@ function requireActionLogic () {
 
 		            continue $sm;
 		          case 1:
-		            this.nl_1 = suspendResult;
-		            this.ol_1 = getMainBranchRef(ActionLogic_instance);
-		            this.pl_1 = getCurrentBranchName(ActionLogic_instance);
-		            this.ql_1 = this.pl_1 === this.ol_1;
-		            this.rl_1 = getFileSizeBytes(ActionLogic_instance, this.nl_1);
-		            if (this.ql_1) {
+		            this.ol_1 = suspendResult;
+		            this.pl_1 = getMainBranchRef(ActionLogic_instance);
+		            this.ql_1 = getCurrentBranchName(ActionLogic_instance);
+		            this.rl_1 = this.ql_1 === this.pl_1;
+		            this.sl_1 = getFileSizeBytes(ActionLogic_instance, this.ol_1);
+		            if (this.rl_1) {
 		              this.k4_1 = 4;
-		              suspendResult = cacheNewFileSize(ActionLogic_instance, this.rl_1, this);
+		              suspendResult = cacheNewFileSize(ActionLogic_instance, this.sl_1, this);
 		              if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		                return suspendResult;
 		              }
@@ -168544,7 +168546,7 @@ function requireActionLogic () {
 		            }
 
 		          case 2:
-		            this.tl_1 = suspendResult;
+		            this.ul_1 = suspendResult;
 		            this.k4_1 = 3;
 		            suspendResult = findLargeFiles(ActionLogic_instance, this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
@@ -168554,14 +168556,14 @@ function requireActionLogic () {
 		            continue $sm;
 		          case 3:
 		            var largeFiles = suspendResult;
-		            var summary = SummaryBuilder_instance.pi(this.nl_1, this.tl_1, this.rl_1, largeFiles);
+		            var summary = SummaryBuilder_instance.pi(this.ol_1, this.ul_1, this.sl_1, largeFiles);
 		            var tmp_0 = this;
 		            setOutput('summary', summary);
-		            tmp_0.sl_1 = Unit_instance;
+		            tmp_0.tl_1 = Unit_instance;
 		            this.k4_1 = 5;
 		            continue $sm;
 		          case 4:
-		            this.sl_1 = 'Size stored (' + this.rl_1.toString() + ' bytes). Diff will happen when this is run on a non-main branch.';
+		            this.tl_1 = 'Size stored (' + this.sl_1.toString() + ' bytes). Diff will happen when this is run on a non-main branch.';
 		            this.k4_1 = 5;
 		            continue $sm;
 		          case 5:
@@ -168580,15 +168582,15 @@ function requireActionLogic () {
 		      }
 		     while (true);
 		  };
-		  protoOf(ActionLogic$run$slambda).vl = function ($this$promise, completion) {
+		  protoOf(ActionLogic$run$slambda).wl = function ($this$promise, completion) {
 		    var i = new ActionLogic$run$slambda(completion);
-		    i.ml_1 = $this$promise;
+		    i.nl_1 = $this$promise;
 		    return i;
 		  };
 		  function ActionLogic$run$slambda_0(resultContinuation) {
 		    var i = new ActionLogic$run$slambda(resultContinuation);
 		    var l = function ($this$promise, $completion) {
-		      return i.ul($this$promise, $completion);
+		      return i.vl($this$promise, $completion);
 		    };
 		    l.$arity = 1;
 		    return l;
@@ -168797,15 +168799,25 @@ function requireActionLogic () {
 		            tmp_2.zk_1 = tmp_3;
 		            this.al_1 = context.repo.owner;
 		            this.bl_1 = context.repo.repo;
+		            var tmp_4 = this;
+		            var this_1 = getInput('large-file-threshold-kb');
+		            var tmp_5;
+		            if (charSequenceLength(this_1) === 0) {
+		              tmp_5 = '100';
+		            } else {
+		              tmp_5 = this_1;
+		            }
+
+		            tmp_4.cl_1 = toLong(tmp_5);
 		            this.l4_1 = 2;
-		            this.dl_1 = getOctokitWrapper(this.xk_1, this.yk_1);
+		            this.el_1 = getOctokitWrapper(this.xk_1, this.yk_1);
 		            this.k4_1 = 1;
-		            var tmp_4 = this.dl_1.rest.pulls;
-		            var this_1 = {};
-		            this_1.owner = this.al_1;
-		            this_1.repo = this.bl_1;
-		            this_1.pull_number = this.zk_1;
-		            suspendResult = await_0(tmp_4.listFiles(this_1), this);
+		            var tmp_6 = this.el_1.rest.pulls;
+		            var this_2 = {};
+		            this_2.owner = this.al_1;
+		            this_2.repo = this.bl_1;
+		            this_2.pull_number = this.zk_1;
+		            suspendResult = await_0(tmp_6.listFiles(this_2), this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		              return suspendResult;
 		            }
@@ -168826,19 +168838,20 @@ function requireActionLogic () {
 		            }
 
 		            var files = destination;
-		            var tmp_5 = this;
+		            var tmp_7 = this;
 		            var destination_0 = ArrayList_init_$Create$();
 		            var _iterator__ex2g4s = files.d();
 		            while (_iterator__ex2g4s.e()) {
 		              var element_0 = _iterator__ex2g4s.f();
 		              var fileSize = getFileSizeBytes(ActionLogic_instance, element_0.filename);
-		              var tmp_6;
-		              if (fileSize.z(new Long(102400, 0)) > 0) {
-		                tmp_6 = new FileInfo(element_0.filename, fileSize);
+		              var tmp_8;
+		              var this_3 = this.cl_1;
+		              if (fileSize.z(this_3.c1(toLong_0(1024))) > 0) {
+		                tmp_8 = new FileInfo(element_0.filename, fileSize);
 		              } else {
-		                tmp_6 = null;
+		                tmp_8 = null;
 		              }
-		              var tmp0_safe_receiver_0 = tmp_6;
+		              var tmp0_safe_receiver_0 = tmp_8;
 		              if (tmp0_safe_receiver_0 == null)
 		                null;
 		              else {
@@ -168846,23 +168859,23 @@ function requireActionLogic () {
 		              }
 		            }
 
-		            tmp_5.cl_1 = destination_0;
+		            tmp_7.dl_1 = destination_0;
 		            this.l4_1 = 3;
 		            this.k4_1 = 4;
 		            continue $sm;
 		          case 2:
 		            this.l4_1 = 3;
 		            var e = this.n4_1;
-		            var tmp_7 = this;
+		            var tmp_9 = this;
 		            println('error: ' + e);
-		            tmp_7.cl_1 = emptyList();
+		            tmp_9.dl_1 = emptyList();
 		            this.k4_1 = 4;
 		            continue $sm;
 		          case 3:
 		            throw this.n4_1;
 		          case 4:
 		            this.l4_1 = 3;
-		            return this.cl_1;
+		            return this.dl_1;
 		        }
 		      } catch ($p) {
 		        var e_0 = $p;

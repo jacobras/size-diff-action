@@ -1,13 +1,20 @@
 # Size Diff Action
 
-GitHub Action to track file size changes in PRs. It can track a single file and/or list all modified large files in a
-PR. For example, here's how it looks tracking an Android app's debug APK size:
+This GitHub Action can:
+
+1. Track changes to a single file and summarize the increase/decrease 
+2. List all modified large files in a PR
+
+And do either one of those or both at the same time! For example, here's how it looks tracking an Android app's debug
+APK size:
 
 ![](docs/screenshot.png)
 
-This will also show increases caused by adding/updating third-party dependencies.
+It clearly lists the culprit. The single file difference will also show increases caused by adding/updating third-party
+dependencies.
 
-Passing in a file to track is optional since v2, here's how it looks only listing the large modified files in a PR:
+Passing in a main file to track is optional since `v2`, here's how it looks only listing the large modified files in a
+PR:
 
 ![](docs/screenshot_large_files_only.png)
 
@@ -17,9 +24,9 @@ Add `jacobras/size-diff-action@v2` with these parameters:
 
 | Parameter              | Required?  | Default  | Description                                                                        |
 |------------------------|------------|----------|------------------------------------------------------------------------------------|
+| `repo-token`           | _optional_ |          | Pass in `${{ secrets.GITHUB_TOKEN }}` to print large files added/modified in a PR. |
 | `path`                 | _optional_ |          | File to track the size of (can be a glob pattern).                                 |
 | `main-branch-name`     | _optional_ | `"main"` | Name of your main branch.                                                          |
-| `repo-token`           | _optional_ |          | Pass in `${{ secrets.GITHUB_TOKEN }}` to print large files added/modified in a PR. |
 | `large-file-threshold` | _optional_ | `"100"`  | Threshold (in kilobytes) on what to consider (and list) a "large file".            |
 
 The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:

@@ -9,9 +9,16 @@ inputs:
   path:
     description: "The path of the file to monitor the size of."
     required: true
-  mainBranchName:
+  main-branch-name:
     description: "The name of your main branch."
     default: "main"
+    required: false
+  repo-token:
+    description: "Pass in secrets.GITHUB_TOKEN to print all large files added/modified in a PR."
+    required: false
+  large-file-threshold-kb:
+    description: "Threshold (in kilobytes) on what to consider (and list) a \"large file\"."
+    default: "100"
     required: false
 
 outputs:

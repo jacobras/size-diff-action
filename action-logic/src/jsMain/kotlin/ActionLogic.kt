@@ -2,9 +2,12 @@ import actions.cache.restoreCache
 import actions.cache.saveCache
 import actions.core.getInput
 import actions.core.setOutput
+import actions.github.getOctokit
+import js.objects.unsafeJso
 import js.promise.await
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.await
 import kotlinx.coroutines.promise
 import node.buffer.BufferEncoding
 import node.fs.StatSyncFnSimpleOptions
@@ -20,27 +23,46 @@ object ActionLogic {
     @OptIn(DelicateCoroutinesApi::class)
     @Suppress("unused")
     fun run(): Promise<Unit> = GlobalScope.promise {
-        val pathInput = getInput("path")
-        val globber = actions.glob.create(pathInput)
-        val path = globber.glob().await().first()
-        val mainBranchName = getInput("mainBranchName")
-        val currentBranch = js("process.env.GITHUB_REF ") as String
-        val isMainBranch = currentBranch == "refs/heads/$mainBranchName"
+        val path = getPath()
+        val mainBranchRef = getMainBranchRef()
+        val currentBranch = getCurrentBranchName()
+        val isMainBranch = currentBranch == mainBranchRef
 
-        val newSizeBytes = measureNewSizeFromFile(path)
-
-        val summary = if (!isMainBranch) {
-            val existingSizeBytes = readExistingSizeFromCache()
-            SummaryBuilder.buildDiff(
-                path = path,
-                existingSizeBytes = existingSizeBytes,
-                newSizeBytes = newSizeBytes
-            )
+        val newSizeBytes = if (path.isNotBlank()) {
+            getFileSizeBytes(path)
         } else {
+            -1
+        }
+
+        if (isMainBranch) {
             cacheNewFileSize(newSizeBytes)
             "Size stored ($newSizeBytes bytes). Diff will happen when this is run on a non-main branch."
+        } else {
+            val existingSizeBytes = readExistingSizeFromCache()
+            val largeFiles = findLargeFiles()
+            val summary = SummaryBuilder.buildDiff(
+                path = path,
+                existingSizeBytes = existingSizeBytes,
+                newSizeBytes = newSizeBytes,
+                largeFiles = largeFiles
+            )
+            setOutput("summary", summary)
         }
-        setOutput("summary", summary)
+    }
+
+    private suspend fun getPath(): String {
+        val pathInput = getInput("path")
+        val globber = actions.glob.create(pathInput)
+        return globber.glob().await().firstOrNull() ?: ""
+    }
+
+    private fun getMainBranchRef(): String {
+        val mainBranchName = getInput("main-branch-name")
+        return "refs/heads/$mainBranchName"
+    }
+
+    private fun getCurrentBranchName(): String {
+        return js("process.env.GITHUB_REF ") as String
     }
 
     private suspend fun readExistingSizeFromCache(): Long {
@@ -54,13 +76,6 @@ object ActionLogic {
             -1L
         }
         return existing
-    }
-
-    private fun measureNewSizeFromFile(path: String): Long {
-        val options = buildObject<StatSyncFnSimpleOptions>()
-        val file = statSync.invoke(path, options) ?: error("Cannot find the file at path $path")
-        val fileSize = file.size
-        return fileSize.toLong()
     }
 
     private suspend fun cacheNewFileSize(fileSize: Long) {
@@ -77,10 +92,67 @@ object ActionLogic {
             enableCrossOsArchive = true
         )
     }
+
+    private fun getFileSizeBytes(path: String): Long {
+        val options = buildObject<StatSyncFnSimpleOptions>()
+        val file = statSync.invoke(path, options) ?: error("Cannot find the file at path $path")
+        val fileSize = file.size
+        return fileSize.toLong()
+    }
+
+    /**
+     * Finds large files touched (added/modified) in the current PR.
+     */
+    private suspend fun findLargeFiles(): List<FileInfo> {
+        val token = getInput("repo-token").ifEmpty {
+            println("No repo-token passed in, not going to find large files")
+            return emptyList()
+        }
+        val prNumber = actions.github.context.payload.pull_request?.number ?: return let {
+            println("Not running in PR context, not going to find large files")
+            emptyList()
+        }
+        val owner = actions.github.context.repo.owner
+        val repo = actions.github.context.repo.repo
+
+        val largeFileThresholdKb = getInput("large-file-threshold-kb").ifEmpty { "100" }.toLong()
+
+        return try {
+            val octokit = getOctokitWrapper(token)
+            val response = octokit.rest.pulls.listFiles(unsafeJso {
+                this.owner = owner
+                this.repo = repo
+                this.prNumber = prNumber
+            }
+            ).await()
+
+            val files = response.data.filter { it.status in listOf("added", "modified") }
+            files.mapNotNull {
+                val fileSize = getFileSizeBytes(it.filename)
+
+                if (fileSize > largeFileThresholdKb * ONE_KB_BYTES) {
+                    FileInfo(
+                        filename = it.filename,
+                        sizeBytes = fileSize
+                    )
+                } else {
+                    null
+                }
+            }
+        } catch (e: dynamic) {
+            println("error: $e")
+            emptyList()
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
+    private fun getOctokitWrapper(token: String): OctokitWrapper {
+        return getOctokit(token) as OctokitWrapper
+    }
 }
 
-private fun <T> buildObject(): T {
-    return js("{}") as T
+private fun <T> buildObject(builder: T.() -> Unit = {}): T {
+    return (js("{}") as T).apply(builder)
 }
 
 private const val PREFIX = "jacobras-size-diff-action"

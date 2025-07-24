@@ -10,14 +10,20 @@ kotlin {
         }
         outputModuleName = "actionLogic"
     }
+    jvm()
 
     sourceSets {
         jsMain.dependencies {
             implementation(kotlinWrappers.actions.cache)
             implementation(kotlinWrappers.actions.core)
             implementation(kotlinWrappers.actions.glob)
+            implementation(kotlinWrappers.actions.github)
             implementation(kotlinWrappers.node)
             implementation(libs.kotlin.coroutines.core)
+        }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.assertK)
         }
     }
 }

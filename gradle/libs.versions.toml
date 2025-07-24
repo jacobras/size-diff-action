@@ -2,7 +2,7 @@
 kotlin = "2.2.0"
 
 [libraries]
-humanReadable = { module = "nl.jacobras:Human-Readable", version = "1.12.0" }
+assertK = { module = "com.willowtreeapps.assertk:assertk", version = "0.28.1" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.10.2" }
 
 [plugins]

@@ -1,25 +1,37 @@
 # Size Diff Action
 
-GitHub Action to track a file's size difference, compared to a main branch. For example, to track an Android
-app's debug APK size on pull requests:
+GitHub Action to track file size changes in PRs. It can track a single file and/or list all modified large files in a
+PR. For example, here's how it looks tracking an Android app's debug APK size:
 
 ![](docs/screenshot.png)
 
+This will also show increases caused by adding/updating third-party dependencies.
+
+Passing in a file to track is optional since v2, here's how it looks only listing the large modified files in a PR:
+
+![](docs/screenshot_large_files_only.png)
+
 ## Usage
 
-Add `jacobras/size-diff-action@v1` with these parameters:
+Add `jacobras/size-diff-action@v2` with these parameters:
 
-* `path` the file to track the size of (can be a glob pattern)
-* `mainBranchName` the name of your main branch (optional, defaults to "main")
+| Parameter              | Required?  | Default  | Description                                                                        |
+|------------------------|------------|----------|------------------------------------------------------------------------------------|
+| `path`                 | _optional_ |          | File to track the size of (can be a glob pattern).                                 |
+| `main-branch-name`     | _optional_ | `"main"` | Name of your main branch.                                                          |
+| `repo-token`           | _optional_ |          | Pass in `${{ secrets.GITHUB_TOKEN }}` to print large files added/modified in a PR. |
+| `large-file-threshold` | _optional_ | `"100"`  | Threshold (in kilobytes) on what to consider (and list) a "large file".            |
 
 The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:
 
 ```yml
 - name: Calculate APK size difference
   id: size-diff
-  uses: jacobras/size-diff-action@v1
+  uses: jacobras/size-diff-action@v2
   with:
-    path: app/build/outputs/apk/debug/app-debug.apk # or any other file, as long as it exists
+    path: app/build/outputs/apk/debug/app-debug.apk # any file here to track
+    repo-token: ${{ secrets.GITHUB_TOKEN }} # to list large modified files in a PR
+    large-file-threshold-kb: 50 # optional, defaults to 100 kB
 
 - name: Comment APK size difference
   uses: marocchino/sticky-pull-request-comment@v2
@@ -28,7 +40,7 @@ The output is a summary that can be posted as a comment to PRs. For example, to 
     message: ${{ steps.size-diff.outputs.summary }}
 ```
 
-_Specify the `mainBranchName` parameter if your main branch is not called "main."_
+_Specify the `main-branch-name` parameter if your main branch is not called "main."_
 
 > [!IMPORTANT]
 > Make sure to add the `pull-requests: write` permission for the comment poster.
@@ -43,10 +55,9 @@ _Specify the `mainBranchName` parameter if your main branch is not called "main.
 
 - name: Calculate JS size difference
   id: size-diff
-  uses: jacobras/size-diff-action@v1
+  uses: jacobras/size-diff-action@v2
   with:
     path: build/js/packages/composeApp/kotlin/Human-Readable.js
-    mainBranchName: main # only needed if not "main"
 
 - name: Comment JS size difference
   uses: marocchino/sticky-pull-request-comment@v2
@@ -59,7 +70,7 @@ _Specify the `mainBranchName` parameter if your main branch is not called "main.
 
 ## Limitations/known issues
 
-1. Tracks only one file.
+1. Tracks only one file in `path`.
 2. File size is stored in GH Action's cache. If it's not used for 7 days, it gets deleted, so the main branch will have
    to run again to write the main (golden) file size.
 3. Because this uses GH Action's cache internally, it only works for branches that are branched off the main branch
@@ -72,7 +83,7 @@ _Specify the `mainBranchName` parameter if your main branch is not called "main.
 
 #### Why does the comment show "Previous size: -1 byte"?
 
-That happens when the action hasn't been run on the main/develop branch yet. Make sure to check the `mainBranchName`
+That happens when the action hasn't been run on the main/develop branch yet. Make sure to check the `main-branch-name`
 parameter. It could also mean the cache was deleted, which happens by GitHub when an entry hasn't been touched for 7
 days.
 

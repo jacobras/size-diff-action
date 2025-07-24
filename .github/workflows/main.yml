@@ -17,6 +17,9 @@ jobs:
         id: test
         with:
           path: test-*.zip
+          main-branch-name: main
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          large-file-threshold-kb: 100
 
       - name: Print Output
         run: |

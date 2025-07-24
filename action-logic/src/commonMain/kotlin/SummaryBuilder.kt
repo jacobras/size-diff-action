@@ -49,12 +49,15 @@ object SummaryBuilder {
 
     private fun formatSize(bytes: Long): String {
         return when {
-            bytes < 1024 -> "$bytes bytes"
-            bytes < 1024 * 1024 -> "${(bytes.toDouble() / 1024).roundDecimals(0)} kB"
-            bytes < 1024 * 1024 * 1024 -> "${(bytes.toDouble() / 1024 / 1024).roundDecimals(1)} MB"
-            else -> "unknown"
+            bytes < ONE_KB_BYTES -> "$bytes bytes"
+            bytes < ONE_MB_BYTES -> "${(bytes.toDouble() / ONE_KB_BYTES).roundDecimals(0)} kB"
+            bytes < ONE_GB_BYTES -> "${(bytes.toDouble() / ONE_MB_BYTES).roundDecimals(1)} MB"
+            else -> "${(bytes.toDouble() / ONE_GB_BYTES).roundDecimals(1)} GB"
         }
     }
 }
 
 private const val LARGE_FILES_LIST_LIMIT = 100
+const val ONE_KB_BYTES = 1024
+const val ONE_MB_BYTES = ONE_KB_BYTES * 1024
+const val ONE_GB_BYTES = ONE_MB_BYTES * 1024

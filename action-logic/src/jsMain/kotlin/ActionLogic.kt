@@ -126,7 +126,7 @@ object ActionLogic {
             files.mapNotNull {
                 val fileSize = getFileSizeBytes(it.filename)
 
-                if (fileSize > largeFileThresholdKb * ONE_MB_IN_KB) {
+                if (fileSize > largeFileThresholdKb * ONE_KB_BYTES) {
                     FileInfo(
                         filename = it.filename,
                         sizeBytes = fileSize
@@ -154,4 +154,3 @@ private fun <T> buildObject(builder: T.() -> Unit = {}): T {
 private const val PREFIX = "jacobras-size-diff-action"
 private const val CACHE_FILENAME = "$PREFIX-size.txt"
 private const val CACHE_KEY = "$PREFIX-main-file-size"
-private const val ONE_MB_IN_KB = 1024

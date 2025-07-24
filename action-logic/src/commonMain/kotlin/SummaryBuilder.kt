@@ -37,7 +37,7 @@ object SummaryBuilder {
                 appendLine()
                 appendLine("Large files added/modified in this PR:")
 
-                for (file in largeFiles) {
+                for (file in largeFiles.take(LARGE_FILES_LIST_LIMIT)) {
                     appendLine("* `${file.filename}`: ${formatSize(file.sizeBytes)}")
                 }
             }
@@ -56,3 +56,5 @@ object SummaryBuilder {
         }
     }
 }
+
+private const val LARGE_FILES_LIST_LIMIT = 100

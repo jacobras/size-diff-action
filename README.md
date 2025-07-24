@@ -10,7 +10,7 @@ app's debug APK size on pull requests:
 Add `jacobras/size-diff-action@v1` with these parameters:
 
 * `path` the file to track the size of (can be a glob pattern)
-* `mainBranchName` the name of your main branch (optional, defaults to "main")
+* `main-branch-name` the name of your main branch (optional, defaults to "main")
 
 The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:
 
@@ -28,7 +28,7 @@ The output is a summary that can be posted as a comment to PRs. For example, to 
     message: ${{ steps.size-diff.outputs.summary }}
 ```
 
-_Specify the `mainBranchName` parameter if your main branch is not called "main."_
+_Specify the `main-branch-name` parameter if your main branch is not called "main."_
 
 > [!IMPORTANT]
 > Make sure to add the `pull-requests: write` permission for the comment poster.
@@ -46,7 +46,7 @@ _Specify the `mainBranchName` parameter if your main branch is not called "main.
   uses: jacobras/size-diff-action@v1
   with:
     path: build/js/packages/composeApp/kotlin/Human-Readable.js
-    mainBranchName: main # only needed if not "main"
+    main-branch-name: main # only needed if not "main"
 
 - name: Comment JS size difference
   uses: marocchino/sticky-pull-request-comment@v2
@@ -72,7 +72,7 @@ _Specify the `mainBranchName` parameter if your main branch is not called "main.
 
 #### Why does the comment show "Previous size: -1 byte"?
 
-That happens when the action hasn't been run on the main/develop branch yet. Make sure to check the `mainBranchName`
+That happens when the action hasn't been run on the main/develop branch yet. Make sure to check the `main-branch-name`
 parameter. It could also mean the cache was deleted, which happens by GitHub when an entry hasn't been touched for 7
 days.
 

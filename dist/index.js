@@ -30,7 +30,7 @@ import require$$0$a from 'diagnostics_channel';
 import require$$2$4 from 'child_process';
 import require$$6$1 from 'timers';
 import require$$0$b from 'punycode';
-import require$$0$d from 'node:fs';
+import require$$1$8 from 'node:fs';
 import { randomUUID as randomUUID$2 } from 'node:crypto';
 import * as os from 'node:os';
 import { EOL as EOL$1 } from 'node:os';
@@ -162647,6 +162647,9 @@ function requireKotlinKotlinStdlib () {
 		    }
 		    return result;
 		  }
+		  function abs(n) {
+		    return n.z(new Long(0, 0)) < 0 ? n.e1() : n;
+		  }
 		  function KClass() {
 		  }
 		  function KClassImpl(jClass) {
@@ -164439,21 +164442,22 @@ function requireKotlinKotlinStdlib () {
 		  _.$_$.k2 = numberToLong;
 		  _.$_$.l2 = protoOf;
 		  _.$_$.m2 = toString_1;
-		  _.$_$.n2 = substringAfterLast;
-		  _.$_$.o2 = toLong_0;
-		  _.$_$.p2 = Enum;
-		  _.$_$.q2 = Error_0;
-		  _.$_$.r2 = Exception;
-		  _.$_$.s2 = Long;
-		  _.$_$.t2 = RuntimeException;
-		  _.$_$.u2 = THROW_CCE;
-		  _.$_$.v2 = UnsupportedOperationException;
-		  _.$_$.w2 = addSuppressed;
-		  _.$_$.x2 = createFailure;
-		  _.$_$.y2 = ensureNotNull;
-		  _.$_$.z2 = noWhenBranchMatchedException;
-		  _.$_$.a3 = throwUninitializedPropertyAccessException;
-		  _.$_$.b3 = toString_0;
+		  _.$_$.n2 = abs;
+		  _.$_$.o2 = substringAfterLast;
+		  _.$_$.p2 = toLong_0;
+		  _.$_$.q2 = Enum;
+		  _.$_$.r2 = Error_0;
+		  _.$_$.s2 = Exception;
+		  _.$_$.t2 = Long;
+		  _.$_$.u2 = RuntimeException;
+		  _.$_$.v2 = THROW_CCE;
+		  _.$_$.w2 = UnsupportedOperationException;
+		  _.$_$.x2 = addSuppressed;
+		  _.$_$.y2 = createFailure;
+		  _.$_$.z2 = ensureNotNull;
+		  _.$_$.a3 = noWhenBranchMatchedException;
+		  _.$_$.b3 = throwUninitializedPropertyAccessException;
+		  _.$_$.c3 = toString_0;
 		  //endregion
 		  return _;
 		}(module.exports));
@@ -164479,7 +164483,7 @@ function requireKotlinxAtomicfu () {
 		  var initMetadataForObject = kotlin_kotlin.$_$.h2;
 		  var VOID = kotlin_kotlin.$_$.b;
 		  var initMetadataForClass = kotlin_kotlin.$_$.d2;
-		  var toString = kotlin_kotlin.$_$.b3;
+		  var toString = kotlin_kotlin.$_$.c3;
 		  //endregion
 		  //region block: pre-declaration
 		  initMetadataForClass(atomicfu$TraceBase, 'TraceBase');
@@ -164591,7 +164595,7 @@ function requireKotlinxCoroutinesCore () {
 		  var imul = Math.imul;
 		  var Unit_instance = kotlin_kotlin.$_$.y;
 		  var protoOf = kotlin_kotlin.$_$.l2;
-		  var THROW_CCE = kotlin_kotlin.$_$.u2;
+		  var THROW_CCE = kotlin_kotlin.$_$.v2;
 		  var Element = kotlin_kotlin.$_$.s1;
 		  var Continuation = kotlin_kotlin.$_$.o1;
 		  var initMetadataForClass = kotlin_kotlin.$_$.d2;
@@ -164609,28 +164613,28 @@ function requireKotlinxCoroutinesCore () {
 		  var minusKey = kotlin_kotlin.$_$.m1;
 		  var ContinuationInterceptor = kotlin_kotlin.$_$.n1;
 		  var RuntimeException_init_$Create$ = kotlin_kotlin.$_$.p;
-		  var addSuppressed = kotlin_kotlin.$_$.w2;
+		  var addSuppressed = kotlin_kotlin.$_$.x2;
 		  var initMetadataForInterface = kotlin_kotlin.$_$.f2;
-		  var Enum = kotlin_kotlin.$_$.p2;
+		  var Enum = kotlin_kotlin.$_$.q2;
 		  var startCoroutine = kotlin_kotlin.$_$.v1;
-		  var noWhenBranchMatchedException = kotlin_kotlin.$_$.z2;
-		  var Long = kotlin_kotlin.$_$.s2;
+		  var noWhenBranchMatchedException = kotlin_kotlin.$_$.a3;
+		  var Long = kotlin_kotlin.$_$.t2;
 		  var ArrayDeque_init_$Create$ = kotlin_kotlin.$_$.c;
-		  var RuntimeException = kotlin_kotlin.$_$.t2;
+		  var RuntimeException = kotlin_kotlin.$_$.u2;
 		  var RuntimeException_init_$Init$ = kotlin_kotlin.$_$.o;
 		  var captureStack = kotlin_kotlin.$_$.y1;
-		  var Error_0 = kotlin_kotlin.$_$.q2;
+		  var Error_0 = kotlin_kotlin.$_$.r2;
 		  var Error_init_$Init$ = kotlin_kotlin.$_$.j;
 		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.i;
 		  var equals = kotlin_kotlin.$_$.a2;
-		  var throwUninitializedPropertyAccessException = kotlin_kotlin.$_$.a3;
+		  var throwUninitializedPropertyAccessException = kotlin_kotlin.$_$.b3;
 		  var ArrayList_init_$Create$ = kotlin_kotlin.$_$.d;
 		  var CancellationException = kotlin_kotlin.$_$.e1;
 		  var isInterface = kotlin_kotlin.$_$.i2;
 		  var toString = kotlin_kotlin.$_$.m2;
 		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.l;
 		  var atomic$ref$1 = kotlin_org_jetbrains_kotlinx_atomicfu.$_$.b;
-		  var toString_0 = kotlin_kotlin.$_$.b3;
+		  var toString_0 = kotlin_kotlin.$_$.c3;
 		  var ArrayList = kotlin_kotlin.$_$.z;
 		  var IllegalStateException_init_$Create$_0 = kotlin_kotlin.$_$.m;
 		  var plus = kotlin_kotlin.$_$.t1;
@@ -164638,11 +164642,11 @@ function requireKotlinxCoroutinesCore () {
 		  var fold = kotlin_kotlin.$_$.p1;
 		  var minusKey_0 = kotlin_kotlin.$_$.r1;
 		  var anyToString = kotlin_kotlin.$_$.x1;
-		  var UnsupportedOperationException = kotlin_kotlin.$_$.v2;
+		  var UnsupportedOperationException = kotlin_kotlin.$_$.w2;
 		  var UnsupportedOperationException_init_$Create$ = kotlin_kotlin.$_$.q;
-		  var Exception = kotlin_kotlin.$_$.r2;
+		  var Exception = kotlin_kotlin.$_$.s2;
 		  kotlin_kotlin.$_$.x;
-		  var createFailure = kotlin_kotlin.$_$.x2;
+		  var createFailure = kotlin_kotlin.$_$.y2;
 		  var _Result___init__impl__xyqfz8 = kotlin_kotlin.$_$.s;
 		  var Exception_init_$Init$ = kotlin_kotlin.$_$.k;
 		  var defineProp = kotlin_kotlin.$_$.z1;
@@ -164654,7 +164658,7 @@ function requireKotlinxCoroutinesCore () {
 		  var Collection = kotlin_kotlin.$_$.a1;
 		  var KtList = kotlin_kotlin.$_$.b1;
 		  var CancellationException_init_$Init$ = kotlin_kotlin.$_$.g;
-		  var ensureNotNull = kotlin_kotlin.$_$.y2;
+		  var ensureNotNull = kotlin_kotlin.$_$.z2;
 		  var getStringHashCode = kotlin_kotlin.$_$.b2;
 		  var hashCode = kotlin_kotlin.$_$.c2;
 		  var HashSet_init_$Create$ = kotlin_kotlin.$_$.e;
@@ -167352,7 +167356,7 @@ function requireKotlinJsCore () {
 	(function (module) {
 		(function (_, kotlin_kotlin) {
 		  //region block: imports
-		  var toString = kotlin_kotlin.$_$.b3;
+		  var toString = kotlin_kotlin.$_$.c3;
 		  var newThrowable = kotlin_kotlin.$_$.j2;
 		  //endregion
 		  //region block: pre-declaration
@@ -167391,7 +167395,7 @@ function requireKotlinJs () {
 		  kotlin_kotlin.$_$.x;
 		  var _Result___init__impl__xyqfz8 = kotlin_kotlin.$_$.s;
 		  var toJsError = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js_core.$_$.a;
-		  var createFailure = kotlin_kotlin.$_$.x2;
+		  var createFailure = kotlin_kotlin.$_$.y2;
 		  function toFixed(_this__u8e3s4, digits) {
 		    return (new Number(_this__u8e3s4)).toFixed(digits);
 		  }
@@ -167447,50 +167451,110 @@ function requireActionLogic () {
 	if (hasRequiredActionLogic) return actionLogic.exports;
 	hasRequiredActionLogic = 1;
 	(function (module) {
-		(function (_, $module$node_fs_4svwsv, $module$_actions_core_fx0i1v, $module$_actions_glob_fwy0ei, $module$_actions_cache_3s3lfo, kotlin_kotlin, kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core, kotlin_org_jetbrains_kotlin_wrappers_kotlin_js) {
+		(function (_, $module$_actions_core_fx0i1v, $module$node_fs_4svwsv, $module$_actions_glob_fwy0ei, $module$_actions_cache_3s3lfo, kotlin_kotlin, kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core, kotlin_org_jetbrains_kotlin_wrappers_kotlin_js) {
 		  //region block: imports
-		  var statSync = $module$node_fs_4svwsv.statSync;
 		  var getInput = $module$_actions_core_fx0i1v.getInput;
-		  var create = $module$_actions_glob_fwy0ei.create;
+		  var statSync = $module$node_fs_4svwsv.statSync;
 		  var setOutput = $module$_actions_core_fx0i1v.setOutput;
+		  var create = $module$_actions_glob_fwy0ei.create;
 		  var restoreCache = $module$_actions_cache_3s3lfo.restoreCache;
 		  var readFileSync = $module$node_fs_4svwsv.readFileSync;
 		  var writeFileSync = $module$node_fs_4svwsv.writeFileSync;
 		  var saveCache = $module$_actions_cache_3s3lfo.saveCache;
+		  var Long = kotlin_kotlin.$_$.t2;
+		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.i;
+		  var substringAfterLast = kotlin_kotlin.$_$.o2;
+		  var abs = kotlin_kotlin.$_$.n2;
+		  var _Char___init__impl__6a9atx = kotlin_kotlin.$_$.r;
 		  var Unit_instance = kotlin_kotlin.$_$.y;
+		  var protoOf = kotlin_kotlin.$_$.l2;
+		  var initMetadataForObject = kotlin_kotlin.$_$.h2;
 		  var toString = kotlin_kotlin.$_$.m2;
 		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.l;
 		  var numberToLong = kotlin_kotlin.$_$.k2;
 		  var CoroutineImpl = kotlin_kotlin.$_$.u1;
-		  var protoOf = kotlin_kotlin.$_$.l2;
-		  var THROW_CCE = kotlin_kotlin.$_$.u2;
+		  var THROW_CCE = kotlin_kotlin.$_$.v2;
 		  var CoroutineScope = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.b;
 		  var isInterface = kotlin_kotlin.$_$.i2;
-		  var awaitPromiseLike = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js.$_$.a;
 		  var get_COROUTINE_SUSPENDED = kotlin_kotlin.$_$.f1;
-		  var first = kotlin_kotlin.$_$.c1;
 		  var initMetadataForLambda = kotlin_kotlin.$_$.g2;
 		  var VOID = kotlin_kotlin.$_$.b;
-		  var toLong = kotlin_kotlin.$_$.o2;
-		  var Long = kotlin_kotlin.$_$.s2;
+		  var awaitPromiseLike = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js.$_$.a;
+		  var first = kotlin_kotlin.$_$.c1;
 		  var initMetadataForCoroutine = kotlin_kotlin.$_$.e2;
+		  var toLong = kotlin_kotlin.$_$.p2;
 		  var println = kotlin_kotlin.$_$.w1;
 		  var GlobalScope_instance = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.a;
 		  var promise = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.c;
-		  var initMetadataForObject = kotlin_kotlin.$_$.h2;
 		  var defineProp = kotlin_kotlin.$_$.z1;
 		  var toFixed = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js.$_$.b;
-		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.i;
-		  var substringAfterLast = kotlin_kotlin.$_$.n2;
-		  var _Char___init__impl__6a9atx = kotlin_kotlin.$_$.r;
 		  //endregion
 		  //region block: pre-declaration
+		  initMetadataForObject(SummaryBuilder, 'SummaryBuilder');
 		  initMetadataForLambda(ActionLogic$run$slambda, CoroutineImpl, VOID, [1]);
+		  initMetadataForCoroutine($getPathCOROUTINE$, CoroutineImpl);
 		  initMetadataForCoroutine($readExistingSizeFromCacheCOROUTINE$, CoroutineImpl);
 		  initMetadataForCoroutine($cacheNewFileSizeCOROUTINE$, CoroutineImpl);
 		  initMetadataForObject(ActionLogic, 'ActionLogic', VOID, VOID, VOID, [0, 1]);
-		  initMetadataForObject(SummaryBuilder, 'SummaryBuilder');
 		  //endregion
+		  function formatSize($this, bytes) {
+		    return bytes.z(new Long(1024, 0)) < 0 ? bytes.toString() + ' bytes' : bytes.z(new Long(1048576, 0)) < 0 ? roundDecimals(bytes.h1() / 1024, 0) + ' kB' : bytes.z(new Long(1073741824, 0)) < 0 ? roundDecimals(bytes.h1() / 1024 / 1024, 1) + ' MB' : 'unknown';
+		  }
+		  function SummaryBuilder() {
+		  }
+		  protoOf(SummaryBuilder).yg = function (path, existingSizeBytes, newSizeBytes) {
+		    // Inline function 'kotlin.text.buildString' call
+		    // Inline function 'kotlin.apply' call
+		    var this_0 = StringBuilder_init_$Create$();
+		    var extension = substringAfterLast(path, '.');
+		    var formattedExistingSize = formatSize(SummaryBuilder_instance, existingSizeBytes);
+		    var formattedNewSize = formatSize(SummaryBuilder_instance, newSizeBytes);
+		    var diffBytes = newSizeBytes.b1(existingSizeBytes);
+		    var tmp = SummaryBuilder_instance;
+		    // Inline function 'kotlin.math.absoluteValue' call
+		    var tmp$ret$0 = abs(diffBytes);
+		    var formattedDiff = formatSize(tmp, tmp$ret$0);
+		    // Inline function 'kotlin.text.appendLine' call
+		    var value = '**\uD83D\uDCE6 Previous .' + extension + ' size:** ' + formattedExistingSize;
+		    // Inline function 'kotlin.text.appendLine' call
+		    this_0.w3(value).x3(_Char___init__impl__6a9atx(10));
+		    // Inline function 'kotlin.text.appendLine' call
+		    var value_0 = '**\uD83D\uDCE6 New .' + extension + ' size:** ' + formattedNewSize;
+		    // Inline function 'kotlin.text.appendLine' call
+		    this_0.w3(value_0).x3(_Char___init__impl__6a9atx(10));
+		    // Inline function 'kotlin.text.appendLine' call
+		    this_0.x3(_Char___init__impl__6a9atx(10));
+		    if (diffBytes.equals(new Long(0, 0))) {
+		      // Inline function 'kotlin.text.appendLine' call
+		      var value_1 = 'File size does not change.';
+		      // Inline function 'kotlin.text.appendLine' call
+		      this_0.w3(value_1).x3(_Char___init__impl__6a9atx(10));
+		    } else if (diffBytes.z(new Long(0, 0)) > 0) {
+		      // Inline function 'kotlin.text.appendLine' call
+		      var value_2 = '\uD83D\uDD3C File size **increases by ' + formattedDiff + '**';
+		      // Inline function 'kotlin.text.appendLine' call
+		      this_0.w3(value_2).x3(_Char___init__impl__6a9atx(10));
+		    } else if (diffBytes.z(new Long(0, 0)) < 0) {
+		      // Inline function 'kotlin.text.appendLine' call
+		      var value_3 = '\uD83D\uDD3D File size **decreases by ' + formattedDiff + '**';
+		      // Inline function 'kotlin.text.appendLine' call
+		      this_0.w3(value_3).x3(_Char___init__impl__6a9atx(10));
+		    }
+		    // Inline function 'kotlin.text.appendLine' call
+		    this_0.x3(_Char___init__impl__6a9atx(10));
+		    this_0.w3('<sup>_Generated by `jacobras/size-diff-action`_<\/sup>');
+		    return this_0.toString();
+		  };
+		  var SummaryBuilder_instance;
+		  function getPath($this, $completion) {
+		    var tmp = new $getPathCOROUTINE$($this, $completion);
+		    tmp.m4_1 = Unit_instance;
+		    tmp.n4_1 = null;
+		    return tmp.s4();
+		  }
+		  function getMainBranchName($this) {
+		    return getInput('main-branch-name');
+		  }
 		  function readExistingSizeFromCache($this, $completion) {
 		    var tmp = new $readExistingSizeFromCacheCOROUTINE$($this, $completion);
 		    tmp.m4_1 = Unit_instance;
@@ -167520,14 +167584,14 @@ function requireActionLogic () {
 		  function ActionLogic$run$slambda(resultContinuation) {
 		    CoroutineImpl.call(this, resultContinuation);
 		  }
-		  protoOf(ActionLogic$run$slambda).ej = function ($this$promise, $completion) {
-		    var tmp = this.fj($this$promise, $completion);
+		  protoOf(ActionLogic$run$slambda).nj = function ($this$promise, $completion) {
+		    var tmp = this.oj($this$promise, $completion);
 		    tmp.m4_1 = Unit_instance;
 		    tmp.n4_1 = null;
 		    return tmp.s4();
 		  };
 		  protoOf(ActionLogic$run$slambda).g5 = function (p1, $completion) {
-		    return this.ej((!(p1 == null) ? isInterface(p1, CoroutineScope) : false) ? p1 : THROW_CCE(), $completion);
+		    return this.nj((!(p1 == null) ? isInterface(p1, CoroutineScope) : false) ? p1 : THROW_CCE(), $completion);
 		  };
 		  protoOf(ActionLogic$run$slambda).s4 = function () {
 		    var suspendResult = this.m4_1;
@@ -167536,76 +167600,57 @@ function requireActionLogic () {
 		        var tmp = this.k4_1;
 		        switch (tmp) {
 		          case 0:
-		            this.l4_1 = 6;
-		            this.qi_1 = getInput('path');
-		            var tmp_0 = this;
-		            tmp_0.ri_1 = this.qi_1;
-		            this.si_1 = this.ri_1;
-		            var tmp_1 = this;
-		            tmp_1.ti_1 = undefined;
+		            this.l4_1 = 5;
 		            this.k4_1 = 1;
-		            suspendResult = awaitPromiseLike(create(this.si_1, this.ti_1), this);
+		            suspendResult = getPath(ActionLogic_instance, this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		              return suspendResult;
 		            }
 
 		            continue $sm;
 		          case 1:
-		            this.ui_1 = suspendResult;
-		            var tmp_2 = this;
-		            tmp_2.vi_1 = this.ui_1.glob();
-		            this.wi_1 = this.vi_1;
-		            this.k4_1 = 2;
-		            suspendResult = awaitPromiseLike(this.wi_1, this);
-		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
-		              return suspendResult;
-		            }
-
-		            continue $sm;
-		          case 2:
-		            this.xi_1 = suspendResult;
-		            this.yi_1 = first(this.xi_1);
-		            this.zi_1 = getInput('mainBranchName');
-		            var tmp_3 = this;
-		            var tmp_4 = process.env.GITHUB_REF;
-		            tmp_3.aj_1 = (!(tmp_4 == null) ? typeof tmp_4 === 'string' : false) ? tmp_4 : THROW_CCE();
-		            this.bj_1 = this.aj_1 === 'refs/heads/' + this.zi_1;
-		            this.cj_1 = measureNewSizeFromFile(ActionLogic_instance, this.yi_1);
-		            if (!this.bj_1) {
-		              this.k4_1 = 4;
+		            this.hj_1 = suspendResult;
+		            this.ij_1 = getMainBranchName(ActionLogic_instance);
+		            var tmp_0 = this;
+		            var tmp_1 = process.env.GITHUB_REF;
+		            tmp_0.jj_1 = (!(tmp_1 == null) ? typeof tmp_1 === 'string' : false) ? tmp_1 : THROW_CCE();
+		            this.kj_1 = this.jj_1 === 'refs/heads/' + this.ij_1;
+		            this.lj_1 = measureNewSizeFromFile(ActionLogic_instance, this.hj_1);
+		            if (!this.kj_1) {
+		              this.k4_1 = 3;
 		              suspendResult = readExistingSizeFromCache(ActionLogic_instance, this);
 		              if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		                return suspendResult;
 		              }
 		              continue $sm;
 		            } else {
-		              this.k4_1 = 3;
-		              suspendResult = cacheNewFileSize(ActionLogic_instance, this.cj_1, this);
+		              this.k4_1 = 2;
+		              suspendResult = cacheNewFileSize(ActionLogic_instance, this.lj_1, this);
 		              if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		                return suspendResult;
 		              }
 		              continue $sm;
 		            }
 
+		          case 2:
+		            this.mj_1 = 'Size stored (' + this.lj_1.toString() + ' bytes). Diff will happen when this is run on a non-main branch.';
+		            this.k4_1 = 4;
+		            continue $sm;
 		          case 3:
-		            this.dj_1 = 'Size stored (' + this.cj_1.toString() + ' bytes). Diff will happen when this is run on a non-main branch.';
-		            this.k4_1 = 5;
+		            var existingSizeBytes = suspendResult;
+		            this.mj_1 = SummaryBuilder_instance.yg(this.hj_1, existingSizeBytes, this.lj_1);
+		            this.k4_1 = 4;
 		            continue $sm;
 		          case 4:
-		            var existingSizeBytes = suspendResult;
-		            this.dj_1 = SummaryBuilder_instance.gj(this.yi_1, existingSizeBytes, this.cj_1);
-		            this.k4_1 = 5;
-		            continue $sm;
-		          case 5:
-		            var summary = this.dj_1;
+		            var summary = this.mj_1;
 		            setOutput('summary', summary);
 		            return Unit_instance;
-		          case 6:
+		          case 5:
 		            throw this.n4_1;
 		        }
 		      } catch ($p) {
 		        var e = $p;
-		        if (this.l4_1 === 6) {
+		        if (this.l4_1 === 5) {
 		          throw e;
 		        } else {
 		          this.k4_1 = this.l4_1;
@@ -167614,22 +167659,76 @@ function requireActionLogic () {
 		      }
 		     while (true);
 		  };
-		  protoOf(ActionLogic$run$slambda).fj = function ($this$promise, completion) {
+		  protoOf(ActionLogic$run$slambda).oj = function ($this$promise, completion) {
 		    var i = new ActionLogic$run$slambda(completion);
-		    i.pi_1 = $this$promise;
+		    i.gj_1 = $this$promise;
 		    return i;
 		  };
 		  function ActionLogic$run$slambda_0(resultContinuation) {
 		    var i = new ActionLogic$run$slambda(resultContinuation);
 		    var l = function ($this$promise, $completion) {
-		      return i.ej($this$promise, $completion);
+		      return i.nj($this$promise, $completion);
 		    };
 		    l.$arity = 1;
 		    return l;
 		  }
+		  function $getPathCOROUTINE$(_this__u8e3s4, resultContinuation) {
+		    CoroutineImpl.call(this, resultContinuation);
+		    this.hh_1 = _this__u8e3s4;
+		  }
+		  protoOf($getPathCOROUTINE$).s4 = function () {
+		    var suspendResult = this.m4_1;
+		    $sm: do
+		      try {
+		        var tmp = this.k4_1;
+		        switch (tmp) {
+		          case 0:
+		            this.l4_1 = 3;
+		            this.ih_1 = getInput('path');
+		            var tmp_0 = this;
+		            tmp_0.jh_1 = this.ih_1;
+		            this.kh_1 = this.jh_1;
+		            var tmp_1 = this;
+		            tmp_1.lh_1 = undefined;
+		            this.k4_1 = 1;
+		            suspendResult = awaitPromiseLike(create(this.kh_1, this.lh_1), this);
+		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
+		              return suspendResult;
+		            }
+
+		            continue $sm;
+		          case 1:
+		            this.mh_1 = suspendResult;
+		            var tmp_2 = this;
+		            tmp_2.nh_1 = this.mh_1.glob();
+		            this.oh_1 = this.nh_1;
+		            this.k4_1 = 2;
+		            suspendResult = awaitPromiseLike(this.oh_1, this);
+		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
+		              return suspendResult;
+		            }
+
+		            continue $sm;
+		          case 2:
+		            var ARGUMENT = suspendResult;
+		            return first(ARGUMENT);
+		          case 3:
+		            throw this.n4_1;
+		        }
+		      } catch ($p) {
+		        var e = $p;
+		        if (this.l4_1 === 3) {
+		          throw e;
+		        } else {
+		          this.k4_1 = this.l4_1;
+		          this.n4_1 = e;
+		        }
+		      }
+		     while (true);
+		  };
 		  function $readExistingSizeFromCacheCOROUTINE$(_this__u8e3s4, resultContinuation) {
 		    CoroutineImpl.call(this, resultContinuation);
-		    this.gh_1 = _this__u8e3s4;
+		    this.xh_1 = _this__u8e3s4;
 		  }
 		  protoOf($readExistingSizeFromCacheCOROUTINE$).s4 = function () {
 		    var suspendResult = this.m4_1;
@@ -167640,19 +167739,19 @@ function requireActionLogic () {
 		          case 0:
 		            this.l4_1 = 2;
 		            var tmp_0 = this;
-		            tmp_0.hh_1 = ['jacobras-size-diff-action-size.txt'];
+		            tmp_0.yh_1 = ['jacobras-size-diff-action-size.txt'];
 		            var tmp_1 = this;
-		            tmp_1.ih_1 = 'jacobras-size-diff-action-main-file-size';
-		            this.jh_1 = this.hh_1;
-		            this.kh_1 = this.ih_1;
+		            tmp_1.zh_1 = 'jacobras-size-diff-action-main-file-size';
+		            this.ai_1 = this.yh_1;
+		            this.bi_1 = this.zh_1;
 		            var tmp_2 = this;
-		            tmp_2.lh_1 = undefined;
+		            tmp_2.ci_1 = undefined;
 		            var tmp_3 = this;
-		            tmp_3.mh_1 = undefined;
+		            tmp_3.di_1 = undefined;
 		            var tmp_4 = this;
-		            tmp_4.nh_1 = undefined;
+		            tmp_4.ei_1 = undefined;
 		            this.k4_1 = 1;
-		            suspendResult = awaitPromiseLike(restoreCache(this.jh_1, this.kh_1, this.lh_1, this.mh_1, this.nh_1), this);
+		            suspendResult = awaitPromiseLike(restoreCache(this.ai_1, this.bi_1, this.ci_1, this.di_1, this.ei_1), this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		              return suspendResult;
 		            }
@@ -167687,8 +167786,8 @@ function requireActionLogic () {
 		  };
 		  function $cacheNewFileSizeCOROUTINE$(_this__u8e3s4, fileSize, resultContinuation) {
 		    CoroutineImpl.call(this, resultContinuation);
-		    this.wh_1 = _this__u8e3s4;
-		    this.xh_1 = fileSize;
+		    this.ni_1 = _this__u8e3s4;
+		    this.oi_1 = fileSize;
 		  }
 		  protoOf($cacheNewFileSizeCOROUTINE$).s4 = function () {
 		    var suspendResult = this.m4_1;
@@ -167698,26 +167797,26 @@ function requireActionLogic () {
 		        switch (tmp) {
 		          case 0:
 		            this.l4_1 = 2;
-		            writeFileSync('jacobras-size-diff-action-size.txt', this.xh_1.toString());
+		            writeFileSync('jacobras-size-diff-action-size.txt', this.oi_1.toString());
 		            var tmp_0 = this;
 		            var tmp_1 = process.env.GITHUB_RUN_ID;
-		            tmp_0.yh_1 = (!(tmp_1 == null) ? typeof tmp_1 === 'string' : false) ? tmp_1 : null;
-		            println('GitHub Actions run ID: ' + this.yh_1);
-		            println('New file size: ' + this.xh_1.toString() + ' bytes');
+		            tmp_0.pi_1 = (!(tmp_1 == null) ? typeof tmp_1 === 'string' : false) ? tmp_1 : null;
+		            println('GitHub Actions run ID: ' + this.pi_1);
+		            println('New file size: ' + this.oi_1.toString() + ' bytes');
 		            var tmp_2 = this;
-		            tmp_2.zh_1 = ['jacobras-size-diff-action-size.txt'];
+		            tmp_2.qi_1 = ['jacobras-size-diff-action-size.txt'];
 		            var tmp_3 = this;
-		            tmp_3.ai_1 = 'jacobras-size-diff-action-main-file-size-' + this.yh_1;
+		            tmp_3.ri_1 = 'jacobras-size-diff-action-main-file-size-' + this.pi_1;
 		            var tmp_4 = this;
-		            tmp_4.bi_1 = buildObject();
+		            tmp_4.si_1 = buildObject();
 		            var tmp_5 = this;
-		            tmp_5.ci_1 = true;
-		            this.di_1 = this.zh_1;
-		            this.ei_1 = this.ai_1;
-		            this.fi_1 = this.bi_1;
-		            this.gi_1 = this.ci_1;
+		            tmp_5.ti_1 = true;
+		            this.ui_1 = this.qi_1;
+		            this.vi_1 = this.ri_1;
+		            this.wi_1 = this.si_1;
+		            this.xi_1 = this.ti_1;
 		            this.k4_1 = 1;
-		            suspendResult = awaitPromiseLike(saveCache(this.di_1, this.ei_1, this.fi_1, this.gi_1), this);
+		            suspendResult = awaitPromiseLike(saveCache(this.ui_1, this.vi_1, this.wi_1, this.xi_1), this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		              return suspendResult;
 		            }
@@ -167749,62 +167848,29 @@ function requireActionLogic () {
 		  function ActionLogic_getInstance() {
 		    return ActionLogic_instance;
 		  }
-		  function buildObject() {
-		    var tmp = {};
-		    return (tmp == null ? true : !(tmp == null)) ? tmp : THROW_CCE();
-		  }
-		  function formatSize($this, bytes) {
-		    return bytes.z(new Long(1024, 0)) < 0 ? bytes.toString() + ' bytes' : bytes.z(new Long(1048576, 0)) < 0 ? toFixed(bytes.h1() / 1024, 0) + ' kB' : bytes.z(new Long(1073741824, 0)) < 0 ? toFixed(bytes.h1() / 1024 / 1024, 1) + ' MB' : 'unknown';
-		  }
-		  function SummaryBuilder() {
-		  }
-		  protoOf(SummaryBuilder).gj = function (path, existingSizeBytes, newSizeBytes) {
-		    // Inline function 'kotlin.text.buildString' call
-		    // Inline function 'kotlin.apply' call
-		    var this_0 = StringBuilder_init_$Create$();
-		    var extension = substringAfterLast(path, '.');
-		    var formattedExistingSize = formatSize(SummaryBuilder_instance, existingSizeBytes);
-		    var formattedNewSize = formatSize(SummaryBuilder_instance, newSizeBytes);
-		    var diffBytes = newSizeBytes.b1(existingSizeBytes);
-		    var formattedDiff = formatSize(SummaryBuilder_instance, diffBytes);
-		    // Inline function 'kotlin.text.appendLine' call
-		    var value = '**\uD83D\uDCE6 Previous .' + extension + ' size:** ' + formattedExistingSize;
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.w3(value).x3(_Char___init__impl__6a9atx(10));
-		    // Inline function 'kotlin.text.appendLine' call
-		    var value_0 = '**\uD83D\uDCE6 New .' + extension + ' size:** ' + formattedNewSize;
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.w3(value_0).x3(_Char___init__impl__6a9atx(10));
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.x3(_Char___init__impl__6a9atx(10));
-		    if (diffBytes.equals(new Long(0, 0))) {
-		      // Inline function 'kotlin.text.appendLine' call
-		      var value_1 = 'File size does not change.';
-		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.w3(value_1).x3(_Char___init__impl__6a9atx(10));
-		    } else if (diffBytes.z(new Long(0, 0)) > 0) {
-		      // Inline function 'kotlin.text.appendLine' call
-		      var value_2 = '\uD83D\uDD3C File size **increases by ' + formattedDiff + '**';
-		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.w3(value_2).x3(_Char___init__impl__6a9atx(10));
-		    } else if (diffBytes.z(new Long(0, 0)) < 0) {
-		      // Inline function 'kotlin.text.appendLine' call
-		      var value_3 = '\uD83D\uDD3D File size **decreases by ' + formattedDiff + '**';
-		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.w3(value_3).x3(_Char___init__impl__6a9atx(10));
+		  function buildObject(builder) {
+		    var tmp;
+		    if (builder === VOID) {
+		      tmp = buildObject$lambda;
+		    } else {
+		      tmp = builder;
 		    }
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.x3(_Char___init__impl__6a9atx(10));
-		    // Inline function 'kotlin.text.appendLine' call
-		    var value_4 = '<sup>_Generated by `jacobras/size-diff-action`_<\/sup>';
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.w3(value_4).x3(_Char___init__impl__6a9atx(10));
-		    return this_0.toString();
-		  };
-		  var SummaryBuilder_instance;
+		    builder = tmp;
+		    var tmp_0 = {};
+		    // Inline function 'kotlin.apply' call
+		    var this_0 = (tmp_0 == null ? true : !(tmp_0 == null)) ? tmp_0 : THROW_CCE();
+		    builder(this_0);
+		    return this_0;
+		  }
+		  function buildObject$lambda(_this__u8e3s4) {
+		    return Unit_instance;
+		  }
+		  function roundDecimals(_this__u8e3s4, decimals) {
+		    return toFixed(_this__u8e3s4, decimals);
+		  }
 		  //region block: init
-		  ActionLogic_instance = new ActionLogic();
 		  SummaryBuilder_instance = new SummaryBuilder();
+		  ActionLogic_instance = new ActionLogic();
 		  //endregion
 		  //region block: exports
 		  function $jsExportAll$(_) {
@@ -167813,7 +167879,7 @@ function requireActionLogic () {
 		  $jsExportAll$(_);
 		  //endregion
 		  return _;
-		}(module.exports, require$$0$d, requireCore(), requireGlob(), requireCache(), requireKotlinKotlinStdlib(), requireKotlinxCoroutinesCore(), requireKotlinJs()));
+		}(module.exports, requireCore(), require$$1$8, requireGlob(), requireCache(), requireKotlinKotlinStdlib(), requireKotlinxCoroutinesCore(), requireKotlinJs()));
 
 		
 	} (actionLogic));

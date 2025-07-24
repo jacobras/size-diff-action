@@ -20,10 +20,8 @@ object ActionLogic {
     @OptIn(DelicateCoroutinesApi::class)
     @Suppress("unused")
     fun run(): Promise<Unit> = GlobalScope.promise {
-        val pathInput = getInput("path")
-        val globber = actions.glob.create(pathInput)
-        val path = globber.glob().await().first()
-        val mainBranchName = getInput("mainBranchName")
+        val path = getPath()
+        val mainBranchName = getMainBranchName()
         val currentBranch = js("process.env.GITHUB_REF ") as String
         val isMainBranch = currentBranch == "refs/heads/$mainBranchName"
 
@@ -41,6 +39,16 @@ object ActionLogic {
             "Size stored ($newSizeBytes bytes). Diff will happen when this is run on a non-main branch."
         }
         setOutput("summary", summary)
+    }
+
+    private suspend fun getPath(): String {
+        val pathInput = getInput("path")
+        val globber = actions.glob.create(pathInput)
+        return globber.glob().await().first()
+    }
+
+    private fun getMainBranchName(): String {
+        return getInput("main-branch-name")
     }
 
     private suspend fun readExistingSizeFromCache(): Long {

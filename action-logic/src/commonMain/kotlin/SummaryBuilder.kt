@@ -9,37 +9,45 @@ object SummaryBuilder {
         largeFiles: List<FileInfo>
     ): String {
         return buildString {
-            val extension = path.substringAfterLast(".")
-            val formattedExistingSize = formatSize(existingSizeBytes)
-            val formattedNewSize = formatSize(newSizeBytes)
-            val diffBytes = newSizeBytes - existingSizeBytes
-            val formattedDiff = formatSize(diffBytes.absoluteValue)
+            if (path.isNotBlank() && existingSizeBytes > -1 && newSizeBytes > -1) {
+                val extension = path.substringAfterLast(".")
+                val formattedExistingSize = formatSize(existingSizeBytes)
+                val formattedNewSize = formatSize(newSizeBytes)
+                val diffBytes = newSizeBytes - existingSizeBytes
+                val formattedDiff = formatSize(diffBytes.absoluteValue)
 
-            appendLine("**📦 Previous .$extension size:** $formattedExistingSize")
-            appendLine("**📦 New .$extension size:** $formattedNewSize")
-            appendLine()
+                appendLine("**📦 Previous .$extension size:** $formattedExistingSize")
+                appendLine("**📦 New .$extension size:** $formattedNewSize")
+                appendLine()
 
-            when {
-                diffBytes == 0L -> {
-                    appendLine("File size does not change.")
-                }
+                when {
+                    diffBytes == 0L -> {
+                        appendLine("File size does not change.")
+                    }
 
-                diffBytes > 0 -> {
-                    appendLine("🔼 File size **increases by $formattedDiff**")
-                }
+                    diffBytes > 0 -> {
+                        appendLine("🔼 File size **increases by $formattedDiff**")
+                    }
 
-                diffBytes < 0 -> {
-                    appendLine("🔽 File size **decreases by $formattedDiff**")
+                    diffBytes < 0 -> {
+                        appendLine("🔽 File size **decreases by $formattedDiff**")
+                    }
                 }
             }
 
             if (largeFiles.isNotEmpty()) {
-                appendLine()
+                if (isNotEmpty()) {
+                    appendLine()
+                }
                 appendLine("Large files added/modified in this PR:")
 
                 for (file in largeFiles.take(LARGE_FILES_LIST_LIMIT)) {
                     appendLine("* `${file.filename}`: ${formatSize(file.sizeBytes)}")
                 }
+            }
+
+            if (isEmpty()) {
+                appendLine("No large file size changes found")
             }
 
             appendLine()

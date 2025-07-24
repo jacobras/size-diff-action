@@ -159853,11 +159853,11 @@ function requireKotlinKotlinStdlib () {
 		  initMetadataForClass(AbstractCollection, 'AbstractCollection', VOID, VOID, [Collection]);
 		  initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, Collection]);
 		  initMetadataForClass(IteratorImpl, 'IteratorImpl');
-		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtList]);
-		  initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtSet]);
+		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtList, Collection]);
+		  initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtSet, Collection]);
 		  initMetadataForCompanion(Companion_1);
-		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, Collection, KtList]);
-		  initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, Collection, KtSet]);
+		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, KtList, Collection]);
+		  initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, KtSet, Collection]);
 		  initMetadataForCompanion(Companion_2);
 		  initMetadataForClass(Itr, 'Itr');
 		  initMetadataForClass(KeysItr, 'KeysItr', VOID, Itr);
@@ -159900,7 +159900,7 @@ function requireKotlinKotlinStdlib () {
 		  }
 		  initMetadataForInterface(InternalMap, 'InternalMap');
 		  initMetadataForClass(InternalHashMap, 'InternalHashMap', InternalHashMap_init_$Create$, VOID, [InternalMap]);
-		  initMetadataForClass(LinkedHashSet, 'LinkedHashSet', LinkedHashSet_init_$Create$, HashSet, [HashSet, Collection, KtSet]);
+		  initMetadataForClass(LinkedHashSet, 'LinkedHashSet', LinkedHashSet_init_$Create$, HashSet, [HashSet, KtSet, Collection]);
 		  initMetadataForClass(BaseOutput, 'BaseOutput');
 		  initMetadataForClass(NodeJsOutput, 'NodeJsOutput', VOID, BaseOutput);
 		  initMetadataForClass(BufferedOutput, 'BufferedOutput', BufferedOutput, BaseOutput);
@@ -160014,11 +160014,15 @@ function requireKotlinKotlinStdlib () {
 		  }
 		  function Number_0() {
 		  }
-		  function first(_this__u8e3s4) {
+		  function firstOrNull(_this__u8e3s4) {
+		    var tmp;
 		    // Inline function 'kotlin.collections.isEmpty' call
-		    if (_this__u8e3s4.length === 0)
-		      throw NoSuchElementException_init_$Create$_0('Array is empty.');
-		    return _this__u8e3s4[0];
+		    if (_this__u8e3s4.length === 0) {
+		      tmp = null;
+		    } else {
+		      tmp = _this__u8e3s4[0];
+		    }
+		    return tmp;
 		  }
 		  function indexOf(_this__u8e3s4, element) {
 		    if (element == null) {
@@ -160137,7 +160141,7 @@ function requireKotlinKotlinStdlib () {
 		      if (n >= _this__u8e3s4.g())
 		        return toList(_this__u8e3s4);
 		      if (n === 1)
-		        return listOf(first_0(_this__u8e3s4));
+		        return listOf(first(_this__u8e3s4));
 		    }
 		    var count = 0;
 		    var list = ArrayList_init_$Create$_0(n);
@@ -160176,9 +160180,9 @@ function requireKotlinKotlinStdlib () {
 		    }
 		    return optimizeReadOnlyList(toMutableList_0(_this__u8e3s4));
 		  }
-		  function first_0(_this__u8e3s4) {
+		  function first(_this__u8e3s4) {
 		    if (isInterface(_this__u8e3s4, KtList))
-		      return first_1(_this__u8e3s4);
+		      return first_0(_this__u8e3s4);
 		    else {
 		      var iterator = _this__u8e3s4.d();
 		      if (!iterator.e())
@@ -160194,7 +160198,7 @@ function requireKotlinKotlinStdlib () {
 		      return toMutableList(_this__u8e3s4);
 		    return toCollection(_this__u8e3s4, ArrayList_init_$Create$());
 		  }
-		  function first_1(_this__u8e3s4) {
+		  function first_0(_this__u8e3s4) {
 		    if (_this__u8e3s4.m())
 		      throw NoSuchElementException_init_$Create$_0('List is empty.');
 		    return _this__u8e3s4.l(0);
@@ -161351,6 +161355,11 @@ function requireKotlinKotlinStdlib () {
 		    if (Digit_instance == null)
 		      new Digit();
 		    return Digit_instance;
+		  }
+		  function isWhitespaceImpl(_this__u8e3s4) {
+		    // Inline function 'kotlin.code' call
+		    var ch = Char__toInt_impl_vasixd(_this__u8e3s4);
+		    return (9 <= ch ? ch <= 13 : false) || (28 <= ch ? ch <= 32 : false) || ch === 160 || (ch > 4096 && (ch === 5760 || (8192 <= ch ? ch <= 8202 : false) || ch === 8232 || ch === 8233 || ch === 8239 || ch === 8287 || ch === 12288));
 		  }
 		  function Comparator() {
 		  }
@@ -163326,6 +163335,9 @@ function requireKotlinKotlinStdlib () {
 		    var uppercase = toString(_this__u8e3s4).toUpperCase();
 		    return uppercase.length > 1 ? _this__u8e3s4 : charCodeAt(uppercase, 0);
 		  }
+		  function isWhitespace(_this__u8e3s4) {
+		    return isWhitespaceImpl(_this__u8e3s4);
+		  }
 		  function toLong_0(_this__u8e3s4) {
 		    var tmp0_elvis_lhs = toLongOrNull(_this__u8e3s4);
 		    var tmp;
@@ -164438,6 +164450,23 @@ function requireKotlinKotlinStdlib () {
 		  function get_lastIndex_1(_this__u8e3s4) {
 		    return charSequenceLength(_this__u8e3s4) - 1 | 0;
 		  }
+		  function isBlank(_this__u8e3s4) {
+		    var tmp$ret$1;
+		    $l$block: {
+		      // Inline function 'kotlin.text.all' call
+		      var inductionVariable = 0;
+		      while (inductionVariable < charSequenceLength(_this__u8e3s4)) {
+		        var element = charSequenceGet(_this__u8e3s4, inductionVariable);
+		        inductionVariable = inductionVariable + 1 | 0;
+		        if (!isWhitespace(element)) {
+		          tmp$ret$1 = false;
+		          break $l$block;
+		        }
+		      }
+		      tmp$ret$1 = true;
+		    }
+		    return tmp$ret$1;
+		  }
 		  function lastIndexOf(_this__u8e3s4, string, startIndex, ignoreCase) {
 		    startIndex = startIndex === VOID ? get_lastIndex_1(_this__u8e3s4) : startIndex;
 		    ignoreCase = ignoreCase === VOID ? false : ignoreCase;
@@ -164608,7 +164637,7 @@ function requireKotlinKotlinStdlib () {
 		  _.$_$.e1 = Collection;
 		  _.$_$.f1 = KtList;
 		  _.$_$.g1 = emptyList;
-		  _.$_$.h1 = first;
+		  _.$_$.h1 = firstOrNull;
 		  _.$_$.i1 = listOf_0;
 		  _.$_$.j1 = removeFirstOrNull;
 		  _.$_$.k1 = take;
@@ -164650,21 +164679,22 @@ function requireKotlinKotlinStdlib () {
 		  _.$_$.u2 = toLong;
 		  _.$_$.v2 = toString_1;
 		  _.$_$.w2 = abs;
-		  _.$_$.x2 = substringAfterLast;
-		  _.$_$.y2 = toLong_0;
-		  _.$_$.z2 = Enum;
-		  _.$_$.a3 = Error_0;
-		  _.$_$.b3 = Exception;
-		  _.$_$.c3 = Long;
-		  _.$_$.d3 = RuntimeException;
-		  _.$_$.e3 = THROW_CCE;
-		  _.$_$.f3 = UnsupportedOperationException;
-		  _.$_$.g3 = addSuppressed;
-		  _.$_$.h3 = createFailure;
-		  _.$_$.i3 = ensureNotNull;
-		  _.$_$.j3 = noWhenBranchMatchedException;
-		  _.$_$.k3 = throwUninitializedPropertyAccessException;
-		  _.$_$.l3 = toString_0;
+		  _.$_$.x2 = isBlank;
+		  _.$_$.y2 = substringAfterLast;
+		  _.$_$.z2 = toLong_0;
+		  _.$_$.a3 = Enum;
+		  _.$_$.b3 = Error_0;
+		  _.$_$.c3 = Exception;
+		  _.$_$.d3 = Long;
+		  _.$_$.e3 = RuntimeException;
+		  _.$_$.f3 = THROW_CCE;
+		  _.$_$.g3 = UnsupportedOperationException;
+		  _.$_$.h3 = addSuppressed;
+		  _.$_$.i3 = createFailure;
+		  _.$_$.j3 = ensureNotNull;
+		  _.$_$.k3 = noWhenBranchMatchedException;
+		  _.$_$.l3 = throwUninitializedPropertyAccessException;
+		  _.$_$.m3 = toString_0;
 		  //endregion
 		  return _;
 		}(module.exports));
@@ -164690,7 +164720,7 @@ function requireKotlinxAtomicfu () {
 		  var initMetadataForObject = kotlin_kotlin.$_$.p2;
 		  var VOID = kotlin_kotlin.$_$.b;
 		  var initMetadataForClass = kotlin_kotlin.$_$.l2;
-		  var toString = kotlin_kotlin.$_$.l3;
+		  var toString = kotlin_kotlin.$_$.m3;
 		  //endregion
 		  //region block: pre-declaration
 		  initMetadataForClass(atomicfu$TraceBase, 'TraceBase');
@@ -164861,7 +164891,7 @@ function requireKotlinxCoroutinesCore () {
 		  var imul = Math.imul;
 		  var Unit_instance = kotlin_kotlin.$_$.c1;
 		  var protoOf = kotlin_kotlin.$_$.t2;
-		  var THROW_CCE = kotlin_kotlin.$_$.e3;
+		  var THROW_CCE = kotlin_kotlin.$_$.f3;
 		  var Element = kotlin_kotlin.$_$.z1;
 		  var Continuation = kotlin_kotlin.$_$.v1;
 		  var initMetadataForClass = kotlin_kotlin.$_$.l2;
@@ -164871,7 +164901,7 @@ function requireKotlinxCoroutinesCore () {
 		  var isInterface = kotlin_kotlin.$_$.q2;
 		  var toString = kotlin_kotlin.$_$.v2;
 		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.p;
-		  var toString_0 = kotlin_kotlin.$_$.l3;
+		  var toString_0 = kotlin_kotlin.$_$.m3;
 		  var atomic$int$1 = kotlin_org_jetbrains_kotlinx_atomicfu.$_$.c;
 		  var atomic$ref$1 = kotlin_org_jetbrains_kotlinx_atomicfu.$_$.b;
 		  var get_COROUTINE_SUSPENDED = kotlin_kotlin.$_$.m1;
@@ -164890,19 +164920,19 @@ function requireKotlinxCoroutinesCore () {
 		  var minusKey = kotlin_kotlin.$_$.t1;
 		  var ContinuationInterceptor = kotlin_kotlin.$_$.u1;
 		  var RuntimeException_init_$Create$ = kotlin_kotlin.$_$.t;
-		  var addSuppressed = kotlin_kotlin.$_$.g3;
-		  var Enum = kotlin_kotlin.$_$.z2;
+		  var addSuppressed = kotlin_kotlin.$_$.h3;
+		  var Enum = kotlin_kotlin.$_$.a3;
 		  var startCoroutine = kotlin_kotlin.$_$.c2;
-		  var noWhenBranchMatchedException = kotlin_kotlin.$_$.j3;
-		  var Long = kotlin_kotlin.$_$.c3;
+		  var noWhenBranchMatchedException = kotlin_kotlin.$_$.k3;
+		  var Long = kotlin_kotlin.$_$.d3;
 		  var ArrayDeque_init_$Create$ = kotlin_kotlin.$_$.c;
-		  var RuntimeException = kotlin_kotlin.$_$.d3;
+		  var RuntimeException = kotlin_kotlin.$_$.e3;
 		  var RuntimeException_init_$Init$ = kotlin_kotlin.$_$.s;
 		  var captureStack = kotlin_kotlin.$_$.f2;
-		  var Error_0 = kotlin_kotlin.$_$.a3;
+		  var Error_0 = kotlin_kotlin.$_$.b3;
 		  var Error_init_$Init$ = kotlin_kotlin.$_$.l;
 		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.k;
-		  var throwUninitializedPropertyAccessException = kotlin_kotlin.$_$.k3;
+		  var throwUninitializedPropertyAccessException = kotlin_kotlin.$_$.l3;
 		  var ArrayList_init_$Create$ = kotlin_kotlin.$_$.d;
 		  var CancellationException = kotlin_kotlin.$_$.l1;
 		  var ArrayList = kotlin_kotlin.$_$.d1;
@@ -164912,12 +164942,12 @@ function requireKotlinxCoroutinesCore () {
 		  var fold = kotlin_kotlin.$_$.w1;
 		  var minusKey_0 = kotlin_kotlin.$_$.y1;
 		  var anyToString = kotlin_kotlin.$_$.e2;
-		  var UnsupportedOperationException = kotlin_kotlin.$_$.f3;
+		  var UnsupportedOperationException = kotlin_kotlin.$_$.g3;
 		  var UnsupportedOperationException_init_$Create$ = kotlin_kotlin.$_$.u;
-		  var Exception = kotlin_kotlin.$_$.b3;
+		  var Exception = kotlin_kotlin.$_$.c3;
 		  var IllegalArgumentException_init_$Create$ = kotlin_kotlin.$_$.o;
 		  kotlin_kotlin.$_$.b1;
-		  var createFailure = kotlin_kotlin.$_$.h3;
+		  var createFailure = kotlin_kotlin.$_$.i3;
 		  var _Result___init__impl__xyqfz8 = kotlin_kotlin.$_$.w;
 		  var Exception_init_$Init$ = kotlin_kotlin.$_$.n;
 		  var defineProp = kotlin_kotlin.$_$.h2;
@@ -164926,10 +164956,10 @@ function requireKotlinxCoroutinesCore () {
 		  var getKClassFromExpression = kotlin_kotlin.$_$.a;
 		  var Exception_init_$Create$ = kotlin_kotlin.$_$.m;
 		  var removeFirstOrNull = kotlin_kotlin.$_$.j1;
-		  var Collection = kotlin_kotlin.$_$.e1;
 		  var KtList = kotlin_kotlin.$_$.f1;
+		  var Collection = kotlin_kotlin.$_$.e1;
 		  var CancellationException_init_$Init$ = kotlin_kotlin.$_$.i;
-		  var ensureNotNull = kotlin_kotlin.$_$.i3;
+		  var ensureNotNull = kotlin_kotlin.$_$.j3;
 		  var getStringHashCode = kotlin_kotlin.$_$.j2;
 		  var HashSet_init_$Create$ = kotlin_kotlin.$_$.f;
 		  var RuntimeException_init_$Init$_0 = kotlin_kotlin.$_$.r;
@@ -164990,7 +165020,7 @@ function requireKotlinxCoroutinesCore () {
 		  initMetadataForClass(Symbol, 'Symbol');
 		  initMetadataForClass(SetTimeoutBasedDispatcher, 'SetTimeoutBasedDispatcher', VOID, CoroutineDispatcher, VOID, [1]);
 		  initMetadataForObject(NodeDispatcher, 'NodeDispatcher', VOID, SetTimeoutBasedDispatcher, VOID, [1]);
-		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [Collection, KtList]);
+		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [KtList, Collection]);
 		  initMetadataForClass(ScheduledMessageQueue, 'ScheduledMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(WindowMessageQueue, 'WindowMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(UnconfinedEventLoop, 'UnconfinedEventLoop', UnconfinedEventLoop, EventLoop);
@@ -168325,7 +168355,7 @@ function requireKotlinJsCore () {
 	(function (module) {
 		(function (_, kotlin_kotlin) {
 		  //region block: imports
-		  var toString = kotlin_kotlin.$_$.l3;
+		  var toString = kotlin_kotlin.$_$.m3;
 		  var newThrowable = kotlin_kotlin.$_$.r2;
 		  //endregion
 		  //region block: pre-declaration
@@ -168364,7 +168394,7 @@ function requireKotlinJs () {
 		  kotlin_kotlin.$_$.b1;
 		  var _Result___init__impl__xyqfz8 = kotlin_kotlin.$_$.w;
 		  var toJsError = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js_core.$_$.a;
-		  var createFailure = kotlin_kotlin.$_$.h3;
+		  var createFailure = kotlin_kotlin.$_$.i3;
 		  function toFixed(_this__u8e3s4, digits) {
 		    return (new Number(_this__u8e3s4)).toFixed(digits);
 		  }
@@ -168435,14 +168465,16 @@ function requireActionLogic () {
 		  var context = $module$_actions_github_mu8xwf.context;
 		  var protoOf = kotlin_kotlin.$_$.t2;
 		  var getStringHashCode = kotlin_kotlin.$_$.j2;
-		  var THROW_CCE = kotlin_kotlin.$_$.e3;
+		  var THROW_CCE = kotlin_kotlin.$_$.f3;
 		  var initMetadataForClass = kotlin_kotlin.$_$.l2;
-		  var Long = kotlin_kotlin.$_$.c3;
+		  var Long = kotlin_kotlin.$_$.d3;
 		  var StringBuilder_init_$Create$ = kotlin_kotlin.$_$.k;
-		  var substringAfterLast = kotlin_kotlin.$_$.x2;
+		  var isBlank = kotlin_kotlin.$_$.x2;
+		  var substringAfterLast = kotlin_kotlin.$_$.y2;
 		  var abs = kotlin_kotlin.$_$.w2;
 		  var _Char___init__impl__6a9atx = kotlin_kotlin.$_$.v;
 		  var Unit_instance = kotlin_kotlin.$_$.c1;
+		  var charSequenceLength = kotlin_kotlin.$_$.g2;
 		  var take = kotlin_kotlin.$_$.k1;
 		  var initMetadataForObject = kotlin_kotlin.$_$.p2;
 		  var toString = kotlin_kotlin.$_$.v2;
@@ -168455,12 +168487,11 @@ function requireActionLogic () {
 		  var initMetadataForLambda = kotlin_kotlin.$_$.o2;
 		  var VOID = kotlin_kotlin.$_$.b;
 		  var awaitPromiseLike = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js.$_$.a;
-		  var first = kotlin_kotlin.$_$.h1;
+		  var firstOrNull = kotlin_kotlin.$_$.h1;
 		  var initMetadataForCoroutine = kotlin_kotlin.$_$.m2;
-		  var toLong = kotlin_kotlin.$_$.y2;
+		  var toLong = kotlin_kotlin.$_$.z2;
 		  var println = kotlin_kotlin.$_$.d2;
 		  var emptyList = kotlin_kotlin.$_$.g1;
-		  var charSequenceLength = kotlin_kotlin.$_$.g2;
 		  var await_0 = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.a;
 		  var ArrayList_init_$Create$ = kotlin_kotlin.$_$.e;
 		  var listOf = kotlin_kotlin.$_$.i1;
@@ -168513,44 +168544,62 @@ function requireActionLogic () {
 		    // Inline function 'kotlin.text.buildString' call
 		    // Inline function 'kotlin.apply' call
 		    var this_0 = StringBuilder_init_$Create$();
-		    var extension = substringAfterLast(path, '.');
-		    var formattedExistingSize = formatSize(SummaryBuilder_instance, existingSizeBytes);
-		    var formattedNewSize = formatSize(SummaryBuilder_instance, newSizeBytes);
-		    var diffBytes = newSizeBytes.f1(existingSizeBytes);
-		    var tmp = SummaryBuilder_instance;
-		    // Inline function 'kotlin.math.absoluteValue' call
-		    var tmp$ret$0 = abs(diffBytes);
-		    var formattedDiff = formatSize(tmp, tmp$ret$0);
-		    // Inline function 'kotlin.text.appendLine' call
-		    var value = '**\uD83D\uDCE6 Previous .' + extension + ' size:** ' + formattedExistingSize;
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.w3(value).x3(_Char___init__impl__6a9atx(10));
-		    // Inline function 'kotlin.text.appendLine' call
-		    var value_0 = '**\uD83D\uDCE6 New .' + extension + ' size:** ' + formattedNewSize;
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.w3(value_0).x3(_Char___init__impl__6a9atx(10));
-		    // Inline function 'kotlin.text.appendLine' call
-		    this_0.x3(_Char___init__impl__6a9atx(10));
-		    if (diffBytes.equals(new Long(0, 0))) {
+		    var tmp;
+		    var tmp_0;
+		    // Inline function 'kotlin.text.isNotBlank' call
+		    if (!isBlank(path)) {
+		      tmp_0 = existingSizeBytes.d1(new Long(-1, -1)) > 0;
+		    } else {
+		      tmp_0 = false;
+		    }
+		    if (tmp_0) {
+		      tmp = newSizeBytes.d1(new Long(-1, -1)) > 0;
+		    } else {
+		      tmp = false;
+		    }
+		    if (tmp) {
+		      var extension = substringAfterLast(path, '.');
+		      var formattedExistingSize = formatSize(SummaryBuilder_instance, existingSizeBytes);
+		      var formattedNewSize = formatSize(SummaryBuilder_instance, newSizeBytes);
+		      var diffBytes = newSizeBytes.f1(existingSizeBytes);
+		      var tmp_1 = SummaryBuilder_instance;
+		      // Inline function 'kotlin.math.absoluteValue' call
+		      var tmp$ret$1 = abs(diffBytes);
+		      var formattedDiff = formatSize(tmp_1, tmp$ret$1);
 		      // Inline function 'kotlin.text.appendLine' call
-		      var value_1 = 'File size does not change.';
+		      var value = '**\uD83D\uDCE6 Previous .' + extension + ' size:** ' + formattedExistingSize;
 		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.w3(value_1).x3(_Char___init__impl__6a9atx(10));
-		    } else if (diffBytes.d1(new Long(0, 0)) > 0) {
+		      this_0.w3(value).x3(_Char___init__impl__6a9atx(10));
 		      // Inline function 'kotlin.text.appendLine' call
-		      var value_2 = '\uD83D\uDD3C File size **increases by ' + formattedDiff + '**';
+		      var value_0 = '**\uD83D\uDCE6 New .' + extension + ' size:** ' + formattedNewSize;
 		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.w3(value_2).x3(_Char___init__impl__6a9atx(10));
-		    } else if (diffBytes.d1(new Long(0, 0)) < 0) {
+		      this_0.w3(value_0).x3(_Char___init__impl__6a9atx(10));
 		      // Inline function 'kotlin.text.appendLine' call
-		      var value_3 = '\uD83D\uDD3D File size **decreases by ' + formattedDiff + '**';
-		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.w3(value_3).x3(_Char___init__impl__6a9atx(10));
+		      this_0.x3(_Char___init__impl__6a9atx(10));
+		      if (diffBytes.equals(new Long(0, 0))) {
+		        // Inline function 'kotlin.text.appendLine' call
+		        var value_1 = 'File size does not change.';
+		        // Inline function 'kotlin.text.appendLine' call
+		        this_0.w3(value_1).x3(_Char___init__impl__6a9atx(10));
+		      } else if (diffBytes.d1(new Long(0, 0)) > 0) {
+		        // Inline function 'kotlin.text.appendLine' call
+		        var value_2 = '\uD83D\uDD3C File size **increases by ' + formattedDiff + '**';
+		        // Inline function 'kotlin.text.appendLine' call
+		        this_0.w3(value_2).x3(_Char___init__impl__6a9atx(10));
+		      } else if (diffBytes.d1(new Long(0, 0)) < 0) {
+		        // Inline function 'kotlin.text.appendLine' call
+		        var value_3 = '\uD83D\uDD3D File size **decreases by ' + formattedDiff + '**';
+		        // Inline function 'kotlin.text.appendLine' call
+		        this_0.w3(value_3).x3(_Char___init__impl__6a9atx(10));
+		      }
 		    }
 		    // Inline function 'kotlin.collections.isNotEmpty' call
 		    if (!largeFiles.m()) {
-		      // Inline function 'kotlin.text.appendLine' call
-		      this_0.x3(_Char___init__impl__6a9atx(10));
+		      // Inline function 'kotlin.text.isNotEmpty' call
+		      if (charSequenceLength(this_0) > 0) {
+		        // Inline function 'kotlin.text.appendLine' call
+		        this_0.x3(_Char___init__impl__6a9atx(10));
+		      }
 		      // Inline function 'kotlin.text.appendLine' call
 		      var value_4 = 'Large files added/modified in this PR:';
 		      // Inline function 'kotlin.text.appendLine' call
@@ -168563,6 +168612,13 @@ function requireActionLogic () {
 		        // Inline function 'kotlin.text.appendLine' call
 		        this_0.w3(value_5).x3(_Char___init__impl__6a9atx(10));
 		      }
+		    }
+		    // Inline function 'kotlin.text.isEmpty' call
+		    if (charSequenceLength(this_0) === 0) {
+		      // Inline function 'kotlin.text.appendLine' call
+		      var value_6 = 'No large file size changes found';
+		      // Inline function 'kotlin.text.appendLine' call
+		      this_0.w3(value_6).x3(_Char___init__impl__6a9atx(10));
 		    }
 		    // Inline function 'kotlin.text.appendLine' call
 		    this_0.x3(_Char___init__impl__6a9atx(10));
@@ -168652,7 +168708,16 @@ function requireActionLogic () {
 		            this.pl_1 = getMainBranchRef(ActionLogic_instance);
 		            this.ql_1 = getCurrentBranchName(ActionLogic_instance);
 		            this.rl_1 = this.ql_1 === this.pl_1;
-		            this.sl_1 = getFileSizeBytes(ActionLogic_instance, this.ol_1);
+		            var tmp_0 = this;
+		            var tmp_1;
+		            var this_0 = this.ol_1;
+		            if (!isBlank(this_0)) {
+		              tmp_1 = getFileSizeBytes(ActionLogic_instance, this.ol_1);
+		            } else {
+		              tmp_1 = new Long(-1, -1);
+		            }
+
+		            tmp_0.sl_1 = tmp_1;
 		            if (this.rl_1) {
 		              this.k4_1 = 4;
 		              suspendResult = cacheNewFileSize(ActionLogic_instance, this.sl_1, this);
@@ -168681,9 +168746,9 @@ function requireActionLogic () {
 		          case 3:
 		            var largeFiles = suspendResult;
 		            var summary = SummaryBuilder_instance.pi(this.ol_1, this.ul_1, this.sl_1, largeFiles);
-		            var tmp_0 = this;
+		            var tmp_2 = this;
 		            setOutput('summary', summary);
-		            tmp_0.tl_1 = Unit_instance;
+		            tmp_2.tl_1 = Unit_instance;
 		            this.k4_1 = 5;
 		            continue $sm;
 		          case 4:
@@ -168758,7 +168823,8 @@ function requireActionLogic () {
 		            continue $sm;
 		          case 2:
 		            var ARGUMENT = suspendResult;
-		            return first(ARGUMENT);
+		            var tmp0_elvis_lhs = firstOrNull(ARGUMENT);
+		            return tmp0_elvis_lhs == null ? '' : tmp0_elvis_lhs;
 		          case 3:
 		            throw this.n4_1;
 		        }

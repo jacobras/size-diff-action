@@ -28,7 +28,11 @@ object ActionLogic {
         val currentBranch = getCurrentBranchName()
         val isMainBranch = currentBranch == mainBranchRef
 
-        val newSizeBytes = getFileSizeBytes(path)
+        val newSizeBytes = if (path.isNotBlank()) {
+            getFileSizeBytes(path)
+        } else {
+            -1
+        }
 
         if (isMainBranch) {
             cacheNewFileSize(newSizeBytes)
@@ -49,7 +53,7 @@ object ActionLogic {
     private suspend fun getPath(): String {
         val pathInput = getInput("path")
         val globber = actions.glob.create(pathInput)
-        return globber.glob().await().first()
+        return globber.glob().await().firstOrNull() ?: ""
     }
 
     private fun getMainBranchRef(): String {

@@ -159853,10 +159853,10 @@ function requireKotlinKotlinStdlib () {
 		  initMetadataForClass(AbstractCollection, 'AbstractCollection', VOID, VOID, [Collection]);
 		  initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, Collection]);
 		  initMetadataForClass(IteratorImpl, 'IteratorImpl');
-		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtList]);
+		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtList, Collection]);
 		  initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtSet, Collection]);
 		  initMetadataForCompanion(Companion_1);
-		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, Collection, KtList]);
+		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, KtList, Collection]);
 		  initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, KtSet, Collection]);
 		  initMetadataForCompanion(Companion_2);
 		  initMetadataForClass(Itr, 'Itr');
@@ -164655,8 +164655,8 @@ function requireKotlinxCoroutinesCore () {
 		  var get_COROUTINE_SUSPENDED = kotlin_kotlin.$_$.f1;
 		  var getKClassFromExpression = kotlin_kotlin.$_$.a;
 		  var removeFirstOrNull = kotlin_kotlin.$_$.d1;
-		  var Collection = kotlin_kotlin.$_$.a1;
 		  var KtList = kotlin_kotlin.$_$.b1;
+		  var Collection = kotlin_kotlin.$_$.a1;
 		  var CancellationException_init_$Init$ = kotlin_kotlin.$_$.g;
 		  var ensureNotNull = kotlin_kotlin.$_$.z2;
 		  var getStringHashCode = kotlin_kotlin.$_$.b2;
@@ -164712,7 +164712,7 @@ function requireKotlinxCoroutinesCore () {
 		  initMetadataForClass(Symbol, 'Symbol');
 		  initMetadataForClass(SetTimeoutBasedDispatcher, 'SetTimeoutBasedDispatcher', VOID, CoroutineDispatcher, VOID, [1]);
 		  initMetadataForObject(NodeDispatcher, 'NodeDispatcher', VOID, SetTimeoutBasedDispatcher, VOID, [1]);
-		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [Collection, KtList]);
+		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [KtList, Collection]);
 		  initMetadataForClass(ScheduledMessageQueue, 'ScheduledMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(WindowMessageQueue, 'WindowMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(UnconfinedEventLoop, 'UnconfinedEventLoop', UnconfinedEventLoop, EventLoop);
@@ -167469,11 +167469,11 @@ function requireActionLogic () {
 		  var Unit_instance = kotlin_kotlin.$_$.y;
 		  var protoOf = kotlin_kotlin.$_$.l2;
 		  var initMetadataForObject = kotlin_kotlin.$_$.h2;
+		  var THROW_CCE = kotlin_kotlin.$_$.v2;
 		  var toString = kotlin_kotlin.$_$.m2;
 		  var IllegalStateException_init_$Create$ = kotlin_kotlin.$_$.l;
 		  var numberToLong = kotlin_kotlin.$_$.k2;
 		  var CoroutineImpl = kotlin_kotlin.$_$.u1;
-		  var THROW_CCE = kotlin_kotlin.$_$.v2;
 		  var CoroutineScope = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.b;
 		  var isInterface = kotlin_kotlin.$_$.i2;
 		  var get_COROUTINE_SUSPENDED = kotlin_kotlin.$_$.f1;
@@ -167552,8 +167552,13 @@ function requireActionLogic () {
 		    tmp.n4_1 = null;
 		    return tmp.s4();
 		  }
-		  function getMainBranchName($this) {
-		    return getInput('main-branch-name');
+		  function getMainBranchRef($this) {
+		    var mainBranchName = getInput('main-branch-name');
+		    return 'refs/heads/' + mainBranchName;
+		  }
+		  function getCurrentBranchName($this) {
+		    var tmp = process.env.GITHUB_REF;
+		    return (!(tmp == null) ? typeof tmp === 'string' : false) ? tmp : THROW_CCE();
 		  }
 		  function readExistingSizeFromCache($this, $completion) {
 		    var tmp = new $readExistingSizeFromCacheCOROUTINE$($this, $completion);
@@ -167610,11 +167615,9 @@ function requireActionLogic () {
 		            continue $sm;
 		          case 1:
 		            this.hj_1 = suspendResult;
-		            this.ij_1 = getMainBranchName(ActionLogic_instance);
-		            var tmp_0 = this;
-		            var tmp_1 = process.env.GITHUB_REF;
-		            tmp_0.jj_1 = (!(tmp_1 == null) ? typeof tmp_1 === 'string' : false) ? tmp_1 : THROW_CCE();
-		            this.kj_1 = this.jj_1 === 'refs/heads/' + this.ij_1;
+		            this.ij_1 = getMainBranchRef(ActionLogic_instance);
+		            this.jj_1 = getCurrentBranchName(ActionLogic_instance);
+		            this.kj_1 = this.jj_1 === this.ij_1;
 		            this.lj_1 = measureNewSizeFromFile(ActionLogic_instance, this.hj_1);
 		            if (!this.kj_1) {
 		              this.k4_1 = 3;

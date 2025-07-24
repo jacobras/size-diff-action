@@ -21,9 +21,9 @@ object ActionLogic {
     @Suppress("unused")
     fun run(): Promise<Unit> = GlobalScope.promise {
         val path = getPath()
-        val mainBranchName = getMainBranchName()
-        val currentBranch = js("process.env.GITHUB_REF ") as String
-        val isMainBranch = currentBranch == "refs/heads/$mainBranchName"
+        val mainBranchRef = getMainBranchRef()
+        val currentBranch = getCurrentBranchName()
+        val isMainBranch = currentBranch == mainBranchRef
 
         val newSizeBytes = measureNewSizeFromFile(path)
 
@@ -47,8 +47,13 @@ object ActionLogic {
         return globber.glob().await().first()
     }
 
-    private fun getMainBranchName(): String {
-        return getInput("main-branch-name")
+    private fun getMainBranchRef(): String {
+        val mainBranchName = getInput("main-branch-name")
+        return "refs/heads/$mainBranchName"
+    }
+
+    private fun getCurrentBranchName(): String {
+        return js("process.env.GITHUB_REF ") as String
     }
 
     private suspend fun readExistingSizeFromCache(): Long {

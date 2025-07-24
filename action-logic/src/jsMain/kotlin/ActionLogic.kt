@@ -87,8 +87,8 @@ object ActionLogic {
     }
 }
 
-private fun <T> buildObject(): T {
-    return js("{}") as T
+private fun <T> buildObject(builder: T.() -> Unit = {}): T {
+    return (js("{}") as T).apply(builder)
 }
 
 private const val PREFIX = "jacobras-size-diff-action"

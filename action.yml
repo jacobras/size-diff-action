@@ -24,6 +24,8 @@ inputs:
 outputs:
   summary:
     description: "A readable summary of the file size difference"
+  diff:
+    description: The size diff to the file passed into `path`, in kilobytes.
 
 runs:
   using: node20

@@ -23,7 +23,7 @@ object ActionLogic {
     @OptIn(DelicateCoroutinesApi::class)
     @Suppress("unused")
     fun run(): Promise<Unit> = GlobalScope.promise {
-        val path = getPath()
+        val path = getPathInput()
         val mainBranchRef = getMainBranchRef()
         val currentBranch = getCurrentBranchName()
         val isMainBranch = currentBranch == mainBranchRef
@@ -44,7 +44,8 @@ object ActionLogic {
                 path = path,
                 existingSizeBytes = existingSizeBytes,
                 newSizeBytes = newSizeBytes,
-                largeFiles = largeFiles
+                largeFiles = largeFiles,
+                includeFooter = getIncludeFooterInput()
             )
             setOutput("summary", summary)
 
@@ -54,10 +55,14 @@ object ActionLogic {
         }
     }
 
-    private suspend fun getPath(): String {
+    private suspend fun getPathInput(): String {
         val pathInput = getInput("path")
         val globber = actions.glob.create(pathInput)
         return globber.glob().await().firstOrNull() ?: ""
+    }
+
+    private suspend fun getIncludeFooterInput(): Boolean {
+        return !getInput("hide-footer").toBoolean()
     }
 
     private fun getMainBranchRef(): String {

@@ -2,7 +2,7 @@
 
 This GitHub Action can:
 
-1. Track changes to a single file and summarize the increase/decrease 
+1. Track changes to a single file and summarize the increase/decrease
 2. List all modified large files in a PR
 
 And do either one of those or both at the same time! For example, here's how it looks tracking an Android app's debug
@@ -22,14 +22,21 @@ PR:
 
 Add `jacobras/size-diff-action@v2` with these parameters:
 
-| Parameter              | Required?  | Default  | Description                                                                        |
+| Input                  | Required?  | Default  | Description                                                                        |
 |------------------------|------------|----------|------------------------------------------------------------------------------------|
-| `repo-token`           | _optional_ |          | Pass in `${{ secrets.GITHUB_TOKEN }}` to print large files added/modified in a PR. |
-| `path`                 | _optional_ |          | File to track the size of (can be a glob pattern).                                 |
-| `main-branch-name`     | _optional_ | `"main"` | Name of your main branch.                                                          |
-| `large-file-threshold` | _optional_ | `"100"`  | Threshold (in kilobytes) on what to consider (and list) a "large file".            |
+| `repo-token`           | _Optional_ |          | Pass in `${{ secrets.GITHUB_TOKEN }}` to print large files added/modified in a PR. |
+| `path`                 | _Optional_ |          | File to track the size of (can be a glob pattern).                                 |
+| `main-branch-name`     | _Optional_ | `"main"` | Name of your main branch.                                                          |
+| `large-file-threshold` | _Optional_ | `"100"`  | Threshold (in kilobytes) on what to consider (and list) a "large file".            |
 
-The output is a summary that can be posted as a comment to PRs. For example, to track an Android app's debug APK size:
+The output is a summary that can be posted as a comment to PRs.
+
+| Output    | Presence                      | Description                                                 |
+|-----------|-------------------------------|-------------------------------------------------------------|
+| `summary` | Always                        | A readable summary that can be posted as a comment.         |
+| `diff`    | _Only if `path` input is set_ | The size diff to the file passed into `path`, in kilobytes. |
+
+For example, to track an Android app's debug APK size and only post if it increases/decreases by more than 30 kB:
 
 ```yml
 - name: Calculate APK size difference
@@ -42,6 +49,7 @@ The output is a summary that can be posted as a comment to PRs. For example, to 
 
 - name: Comment APK size difference
   uses: marocchino/sticky-pull-request-comment@v2
+  if: ${{ steps.apk-size-diff.outputs.diff > 20 }} # Only comment changes > 20 kB
   with:
     header: size-diff
     message: ${{ steps.size-diff.outputs.summary }}

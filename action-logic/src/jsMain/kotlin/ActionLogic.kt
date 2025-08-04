@@ -47,6 +47,10 @@ object ActionLogic {
                 largeFiles = largeFiles
             )
             setOutput("summary", summary)
+
+            if (path.isNotBlank()) {
+                setOutput("diff", ((newSizeBytes - existingSizeBytes) / 1000L).toInt())
+            }
         }
     }
 

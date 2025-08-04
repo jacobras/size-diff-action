@@ -168746,8 +168746,13 @@ function requireActionLogic () {
 		          case 3:
 		            var largeFiles = suspendResult;
 		            var summary = SummaryBuilder_instance.pi(this.ol_1, this.ul_1, this.sl_1, largeFiles);
-		            var tmp_2 = this;
 		            setOutput('summary', summary);
+		            var tmp_2 = this;
+		            var this_1 = this.ol_1;
+		            if (!isBlank(this_1)) {
+		              setOutput('diff', this.sl_1.f1(this.ul_1).h1(new Long(1000, 0)).k1());
+		            }
+
 		            tmp_2.tl_1 = Unit_instance;
 		            this.k4_1 = 5;
 		            continue $sm;

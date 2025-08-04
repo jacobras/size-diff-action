@@ -23,4 +23,5 @@ jobs:
 
       - name: Print Output
         run: |
-          echo "${{ steps.test.outputs.summary }}"
+          echo "summary: ${{ steps.test.outputs.summary }}"
+          echo "diff: ${{ steps.test.outputs.diff }}"

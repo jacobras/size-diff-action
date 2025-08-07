@@ -50,7 +50,7 @@ For example, to track an Android app's debug APK size and only post if it increa
 
 - name: Comment APK size difference
   uses: marocchino/sticky-pull-request-comment@v2
-  if: ${{ steps.apk-size-diff.outputs.diff > 20 }} # Only comment changes > 20 kB
+  if: ${{ steps.size-diff.outputs.diff > 20 }} # Only comment changes > 20 kB
   with:
     header: size-diff
     message: ${{ steps.size-diff.outputs.summary }}

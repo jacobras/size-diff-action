@@ -33,12 +33,14 @@ object ActionLogic {
         } else {
             -1
         }
+        println("New size: $newSizeBytes bytes")
 
         if (isMainBranch) {
             cacheNewFileSize(newSizeBytes)
-            "Size stored ($newSizeBytes bytes). Diff will happen when this is run on a non-main branch."
+            println("Size stored ($newSizeBytes bytes). Diff will happen when this is run on a non-main branch.")
         } else {
             val existingSizeBytes = readExistingSizeFromCache()
+            println("Existing size: $existingSizeBytes bytes")
             val largeFiles = findLargeFiles()
             val summary = SummaryBuilder.buildDiff(
                 path = path,
@@ -50,7 +52,7 @@ object ActionLogic {
             setOutput("summary", summary)
 
             if (path.isNotBlank()) {
-                setOutput("diff", ((newSizeBytes - existingSizeBytes) / 1000L).toInt())
+                setOutput("diff", ((newSizeBytes - existingSizeBytes) / BYTES_IN_KB).toInt())
             }
         }
     }
@@ -61,7 +63,7 @@ object ActionLogic {
         return globber.glob().await().firstOrNull() ?: ""
     }
 
-    private suspend fun getIncludeFooterInput(): Boolean {
+    private fun getIncludeFooterInput(): Boolean {
         return !getInput("hide-footer").toBoolean()
     }
 
@@ -167,3 +169,4 @@ private fun <T> buildObject(builder: T.() -> Unit = {}): T {
 private const val PREFIX = "jacobras-size-diff-action"
 private const val CACHE_FILENAME = "$PREFIX-size.txt"
 private const val CACHE_KEY = "$PREFIX-main-file-size"
+private const val BYTES_IN_KB = 1000L

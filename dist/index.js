@@ -159853,10 +159853,10 @@ function requireKotlinKotlinStdlib () {
 		  initMetadataForClass(AbstractCollection, 'AbstractCollection', VOID, VOID, [Collection]);
 		  initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, Collection]);
 		  initMetadataForClass(IteratorImpl, 'IteratorImpl');
-		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtList, Collection]);
+		  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtList]);
 		  initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtSet]);
 		  initMetadataForCompanion(Companion_1);
-		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, KtList, Collection]);
+		  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, Collection, KtList]);
 		  initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, Collection, KtSet]);
 		  initMetadataForCompanion(Companion_2);
 		  initMetadataForClass(Itr, 'Itr');
@@ -165002,8 +165002,8 @@ function requireKotlinxCoroutinesCore () {
 		  var getKClassFromExpression = kotlin_kotlin.$_$.a;
 		  var Exception_init_$Create$ = kotlin_kotlin.$_$.m;
 		  var removeFirstOrNull = kotlin_kotlin.$_$.j1;
-		  var KtList = kotlin_kotlin.$_$.f1;
 		  var Collection = kotlin_kotlin.$_$.e1;
+		  var KtList = kotlin_kotlin.$_$.f1;
 		  var CancellationException_init_$Init$ = kotlin_kotlin.$_$.i;
 		  var ensureNotNull = kotlin_kotlin.$_$.m3;
 		  var getStringHashCode = kotlin_kotlin.$_$.j2;
@@ -165066,7 +165066,7 @@ function requireKotlinxCoroutinesCore () {
 		  initMetadataForClass(Symbol, 'Symbol');
 		  initMetadataForClass(SetTimeoutBasedDispatcher, 'SetTimeoutBasedDispatcher', VOID, CoroutineDispatcher, VOID, [1]);
 		  initMetadataForObject(NodeDispatcher, 'NodeDispatcher', VOID, SetTimeoutBasedDispatcher, VOID, [1]);
-		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [KtList, Collection]);
+		  initMetadataForClass(MessageQueue, 'MessageQueue', VOID, VOID, [Collection, KtList]);
 		  initMetadataForClass(ScheduledMessageQueue, 'ScheduledMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(WindowMessageQueue, 'WindowMessageQueue', VOID, MessageQueue);
 		  initMetadataForClass(UnconfinedEventLoop, 'UnconfinedEventLoop', UnconfinedEventLoop, EventLoop);
@@ -168533,13 +168533,13 @@ function requireActionLogic () {
 		  var CoroutineScope = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.c;
 		  var isInterface = kotlin_kotlin.$_$.r2;
 		  var get_COROUTINE_SUSPENDED = kotlin_kotlin.$_$.m1;
+		  var println = kotlin_kotlin.$_$.d2;
 		  var initMetadataForLambda = kotlin_kotlin.$_$.o2;
 		  var VOID = kotlin_kotlin.$_$.b;
 		  var awaitPromiseLike = kotlin_org_jetbrains_kotlin_wrappers_kotlin_js.$_$.a;
 		  var firstOrNull = kotlin_kotlin.$_$.h1;
 		  var initMetadataForCoroutine = kotlin_kotlin.$_$.m2;
 		  var toLong = kotlin_kotlin.$_$.b3;
-		  var println = kotlin_kotlin.$_$.d2;
 		  var emptyList = kotlin_kotlin.$_$.g1;
 		  var await_0 = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.a;
 		  var ArrayList_init_$Create$ = kotlin_kotlin.$_$.e;
@@ -168685,7 +168685,7 @@ function requireActionLogic () {
 		    tmp.o4_1 = null;
 		    return tmp.t4();
 		  }
-		  function getIncludeFooterInput($this, $completion) {
+		  function getIncludeFooterInput($this) {
 		    return !toBoolean(getInput('hide-footer'));
 		  }
 		  function getMainBranchRef($this) {
@@ -168735,14 +168735,14 @@ function requireActionLogic () {
 		  function ActionLogic$run$slambda(resultContinuation) {
 		    CoroutineImpl.call(this, resultContinuation);
 		  }
-		  protoOf(ActionLogic$run$slambda).yl = function ($this$promise, $completion) {
-		    var tmp = this.zl($this$promise, $completion);
+		  protoOf(ActionLogic$run$slambda).vl = function ($this$promise, $completion) {
+		    var tmp = this.wl($this$promise, $completion);
 		    tmp.n4_1 = Unit_instance;
 		    tmp.o4_1 = null;
 		    return tmp.t4();
 		  };
 		  protoOf(ActionLogic$run$slambda).h5 = function (p1, $completion) {
-		    return this.yl((!(p1 == null) ? isInterface(p1, CoroutineScope) : false) ? p1 : THROW_CCE(), $completion);
+		    return this.vl((!(p1 == null) ? isInterface(p1, CoroutineScope) : false) ? p1 : THROW_CCE(), $completion);
 		  };
 		  protoOf(ActionLogic$run$slambda).t4 = function () {
 		    var suspendResult = this.n4_1;
@@ -168751,7 +168751,7 @@ function requireActionLogic () {
 		        var tmp = this.l4_1;
 		        switch (tmp) {
 		          case 0:
-		            this.m4_1 = 7;
+		            this.m4_1 = 6;
 		            this.l4_1 = 1;
 		            suspendResult = getPathInput(ActionLogic_instance, this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
@@ -168774,8 +168774,9 @@ function requireActionLogic () {
 		            }
 
 		            tmp_0.tl_1 = tmp_1;
+		            println('New size: ' + this.tl_1.toString() + ' bytes');
 		            if (this.sl_1) {
-		              this.l4_1 = 5;
+		              this.l4_1 = 4;
 		              suspendResult = cacheNewFileSize(ActionLogic_instance, this.tl_1, this);
 		              if (suspendResult === get_COROUTINE_SUSPENDED()) {
 		                return suspendResult;
@@ -168791,7 +168792,8 @@ function requireActionLogic () {
 		            }
 
 		          case 2:
-		            this.vl_1 = suspendResult;
+		            this.ul_1 = suspendResult;
+		            println('Existing size: ' + this.ul_1.toString() + ' bytes');
 		            this.l4_1 = 3;
 		            suspendResult = findLargeFiles(ActionLogic_instance, this);
 		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
@@ -168800,40 +168802,28 @@ function requireActionLogic () {
 
 		            continue $sm;
 		          case 3:
-		            this.wl_1 = suspendResult;
-		            this.xl_1 = SummaryBuilder_instance;
-		            this.l4_1 = 4;
-		            suspendResult = getIncludeFooterInput(ActionLogic_instance, this);
-		            if (suspendResult === get_COROUTINE_SUSPENDED()) {
-		              return suspendResult;
-		            }
-
-		            continue $sm;
-		          case 4:
-		            var ARGUMENT = suspendResult;
-		            var summary = this.xl_1.qi(this.pl_1, this.vl_1, this.tl_1, this.wl_1, ARGUMENT);
+		            var largeFiles = suspendResult;
+		            var summary = SummaryBuilder_instance.qi(this.pl_1, this.ul_1, this.tl_1, largeFiles, getIncludeFooterInput(ActionLogic_instance));
 		            setOutput('summary', summary);
-		            var tmp_2 = this;
 		            var this_1 = this.pl_1;
 		            if (!isBlank(this_1)) {
-		              setOutput('diff', this.tl_1.g1(this.vl_1).i1(new Long(1000, 0)).l1());
+		              setOutput('diff', this.tl_1.g1(this.ul_1).i1(new Long(1000, 0)).l1());
 		            }
 
-		            tmp_2.ul_1 = Unit_instance;
-		            this.l4_1 = 6;
+		            this.l4_1 = 5;
+		            continue $sm;
+		          case 4:
+		            println('Size stored (' + this.tl_1.toString() + ' bytes). Diff will happen when this is run on a non-main branch.');
+		            this.l4_1 = 5;
 		            continue $sm;
 		          case 5:
-		            this.ul_1 = 'Size stored (' + this.tl_1.toString() + ' bytes). Diff will happen when this is run on a non-main branch.';
-		            this.l4_1 = 6;
-		            continue $sm;
-		          case 6:
 		            return Unit_instance;
-		          case 7:
+		          case 6:
 		            throw this.o4_1;
 		        }
 		      } catch ($p) {
 		        var e = $p;
-		        if (this.m4_1 === 7) {
+		        if (this.m4_1 === 6) {
 		          throw e;
 		        } else {
 		          this.l4_1 = this.m4_1;
@@ -168842,7 +168832,7 @@ function requireActionLogic () {
 		      }
 		     while (true);
 		  };
-		  protoOf(ActionLogic$run$slambda).zl = function ($this$promise, completion) {
+		  protoOf(ActionLogic$run$slambda).wl = function ($this$promise, completion) {
 		    var i = new ActionLogic$run$slambda(completion);
 		    i.ol_1 = $this$promise;
 		    return i;
@@ -168850,7 +168840,7 @@ function requireActionLogic () {
 		  function ActionLogic$run$slambda_0(resultContinuation) {
 		    var i = new ActionLogic$run$slambda(resultContinuation);
 		    var l = function ($this$promise, $completion) {
-		      return i.yl($this$promise, $completion);
+		      return i.vl($this$promise, $completion);
 		    };
 		    l.$arity = 1;
 		    return l;

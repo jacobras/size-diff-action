@@ -116,3 +116,8 @@ The project is mostly Kotlin, with just the main entrypoint written in JS.
 1. Build JS from Kotlin module using `gradlew kotlinUpgradeYarnLock :action-logic:jsNodeProductionRun`
 2. Build full JS dist using `rollup --config rollup.config.js`
 3. Push /dist.
+
+### Updating existing tag
+
+1. `git tag -f v2`
+2. `git push origin -f v2`
